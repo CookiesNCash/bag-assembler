@@ -2,8 +2,11 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import fs from 'fs/promises';
+import morgan from 'morgan';
 
 const app = express();
+const logger = morgan('combined'); // отладка и мониторинг процессов
+app.use(logger);
 app.use(express.json());
 
 // Получение абсолютного пути к текущей директории
