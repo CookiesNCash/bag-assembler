@@ -14,7 +14,8 @@ const algorithm = (constContent, content) => {
 
   if (compoundObj.sex === 'male') {
     recommendedItems.push('Бритва');
-  } else {
+  }
+  if (compoundObj.sex === 'female') {
     recommendedItems.push('Косметика');
   }
   if (compoundObj.age < 18) {
