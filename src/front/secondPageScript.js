@@ -1,6 +1,5 @@
 import { algorithm } from './draftAlgorithm.js';
 
-
 document.getElementById('personalization-form').addEventListener('submit', (event) => {
   event.preventDefault(); // Отменить отправку формы по умолчанию
 
@@ -37,7 +36,6 @@ document.getElementById('personalization-form').addEventListener('submit', (even
       console.error('Ошибка при отправке запроса:', error);
     });
 });
-
 
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('btn-analise');

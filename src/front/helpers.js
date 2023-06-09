@@ -11,7 +11,6 @@
 //   await writeFile(addr, data, { encoding: 'utf8' });
 // };
 
-
 // export const readFileAsync = async (file) => {
 //   return new Promise((resolve, reject) => {
 //     const reader = new FileReader();
@@ -28,7 +27,7 @@
 function readFile(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    
+
     reader.onload = (event) => {
       resolve(event.target.result);
     };
@@ -40,5 +39,5 @@ function readFile(file) {
     reader.readAsText(file);
   });
 }
-console.log(readFile('../../database/users/user.json'))
-export {readFile}
+// console.log(readFile('../../database/users/user.json'));
+// export { readFile };
