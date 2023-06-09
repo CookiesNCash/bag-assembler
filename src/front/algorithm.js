@@ -1,7 +1,8 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const algorithm = (constContent, content) => {
-  const compoundObj = _.merge(JSON.parse(constContent), JSON.parse(content));
+  const compoundObj = { ...constContent, ...content };
+
   const recommendedItems = [];
   if (Number(compoundObj.days) === 1) {
     recommendedItems.push('powerbank');
@@ -12,7 +13,8 @@ const algorithm = (constContent, content) => {
 
   if (compoundObj.sex === 'male') {
     recommendedItems.push('Бритва');
-  } else {
+  }
+  if (compoundObj.sex === 'female') {
     recommendedItems.push('Косметика');
   }
   if (compoundObj.age < 18) {

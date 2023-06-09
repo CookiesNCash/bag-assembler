@@ -30,3 +30,7 @@ clear-test:
 
 test-coverage:
 	npx jest --coverage
+
+push:
+	make fix-lint
+	git push
