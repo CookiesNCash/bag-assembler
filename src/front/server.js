@@ -1,9 +1,8 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path, { dirname } from 'path';
 import fs from 'fs/promises';
-import morgan from 'morgan';
-import path from 'path';
+// import morgan from 'morgan';
 
 const app = express();
 // const logger = morgan('combined'); // отладка и мониторинг процессов
@@ -21,7 +20,9 @@ const personalizationFilePath = path.join(usersDirectory, 'personalization.json'
 
 // Сохранение имени пользователя
 app.post('/save-username', (req, res) => {
-  const { name, sex, age, placeLive, citizenship, religion } = req.body;
+  const {
+    name, sex, age, placeLive, citizenship, religion,
+  } = req.body;
   const data = {
     name,
     sex,
@@ -80,7 +81,7 @@ app.get('/get-data', async (req, res) => {
     const userData = await fs.readFile(userFilePath, 'utf-8');
     const personalizationData = await fs.readFile(
       personalizationFilePath,
-      'utf-8'
+      'utf-8',
     );
 
     const data = {
