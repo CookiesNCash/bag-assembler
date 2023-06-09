@@ -12,7 +12,15 @@ jobs:
       - name: SetUp node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '18.x'
+          node-version: '16.x'
           cache: npm
       - run: make install
+      - run: make test
       - run: make lint
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v4.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
