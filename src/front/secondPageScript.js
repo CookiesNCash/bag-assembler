@@ -1,4 +1,4 @@
-import algorithm from './draftAlgorithm.js';
+import algorithm from './algorithm.js';
 import getWeatherApi from './weatherApi.js';
 
 document.getElementById('personalization-form').addEventListener('submit', (event) => {
