@@ -1,5 +1,5 @@
 import algorithm from './draftAlgorithm.js';
-import getWeatheApi from './weatherApi';
+import getWeatheApi from './weatherApi.js';
 
 document.getElementById('personalization-form').addEventListener('submit', (event) => {
   event.preventDefault(); // Отменить отправку формы по умолчанию
@@ -38,8 +38,6 @@ document.getElementById('personalization-form').addEventListener('submit', (even
     });
 });
 
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('btn-analise');
   btn.addEventListener('click', async () => {
@@ -48,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const response2 = await fetch('personalization.json');
     const jsonData2 = await response2.json();
     const city = jsonData2.cities;
-    const link = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`
-    const api = getWeatheApi(link)
+    const link = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
+    const api = getWeatheApi(link);
     console.log(api);
     const transformedData = algorithm(jsonData, jsonData2).join(', ');
     const contentElement = document.getElementById('content');
