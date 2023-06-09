@@ -1,7 +1,9 @@
 name: Node CI
 
 on:
-  - push
+  push:
+    branches:
+      - main  # Замените на вашу основную ветку
 
 jobs:
   build:
@@ -9,13 +11,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: SetUp node.js
         uses: actions/setup-node@v1
         with:
           node-version: '16.x'
           cache: npm
+
+      - name: Install ESLint
+        run: npm install eslint --save-dev
+
       - run: make install
       - run: make test
+
+      - name: Run ESLint
+        run: npx eslint . --ext .js
+
+      - name: Check ESLint errors
+        run: |
+          ESLINT_EXIT_CODE=$?
+          if [ $ESLINT_EXIT_CODE -ne 0 ]; then
+            echo "ESLint обнаружил ошибки. Пуш отклонен."
+            exit 1
+          fi
+
       - run: make lint
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v4.0.0
