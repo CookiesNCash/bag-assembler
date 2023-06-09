@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <script src="secondPageScript.js" defer></script>
-    <script src="script.js" defer></script>
+    <script type="module" src="secondPageScript.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -44,10 +43,13 @@
               />
 
               <button type="submit" class="btn">Отправить</button>
+<br>
+              <button  id="btn-analise">анализировать</button>
             </form>
           </div>
         </div>
       </div>
     </div>
+    <div id="content"></div>
   </body>
 </html>

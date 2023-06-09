@@ -1,7 +1,9 @@
-import _ from 'lodash';
+// import _ from 'lodash';
 
 const algorithm = (constContent, content) => {
-  const compoundObj = _.merge(JSON.parse(constContent), JSON.parse(content));
+
+  const compoundObj = {...constContent, ...content};
+  
   const recommendedItems = [];
   if (Number(compoundObj.days) === 1) {
     recommendedItems.push('powerbank');
@@ -65,4 +67,4 @@ const algorithm = (constContent, content) => {
 //     recommendedItems.push('легкую одежду');
 //   }
 // }
-export default algorithm;
+export { algorithm };

@@ -1,3 +1,6 @@
+import { algorithm } from './draftAlgorithm.js';
+
+
 document.getElementById('personalization-form').addEventListener('submit', (event) => {
   event.preventDefault(); // Отменить отправку формы по умолчанию
 
@@ -33,4 +36,19 @@ document.getElementById('personalization-form').addEventListener('submit', (even
     .catch((error) => {
       console.error('Ошибка при отправке запроса:', error);
     });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('btn-analise');
+  btn.addEventListener('click', async () => {
+    const response = await fetch('user.json');
+    const jsonData = await response.json();
+    const response2 = await fetch('personalization.json');
+    const jsonData2 = await response2.json();
+    const transformedData = algorithm(jsonData, jsonData2);
+    const contentElement = document.getElementById('content');
+    const formattedJson = JSON.stringify(transformedData, null, 2);
+    contentElement.textContent = formattedJson;
+  });
 });
