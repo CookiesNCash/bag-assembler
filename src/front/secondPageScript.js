@@ -38,20 +38,19 @@ document.getElementById('personalization-form').addEventListener('submit', (even
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const btn = document.getElementById('btn-analise');
   btn.addEventListener('click', async () => {
-    const response = await fetch('user.json');
-    const jsonData = await response.json();
-    const response2 = await fetch('personalization.json');
-    const jsonData2 = await response2.json();
-    const city = jsonData2.cities;
-    const link = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
-    const api = getWeatheApi(link);
-    console.log(api);
-    const transformedData = algorithm(jsonData, jsonData2).join(', ');
-    const contentElement = document.getElementById('content');
-    const formattedJson = JSON.stringify(transformedData, null, 2);
-    contentElement.textContent = formattedJson;
+    try {
+      const response = await fetch('/get-data'); // Fetch the saved data
+      const jsonData = await response.json();
+
+      const transformedData = algorithm(jsonData.user, jsonData.personalization).join(', ');
+      const contentElement = document.getElementById('content');
+      const formattedJson = JSON.stringify(transformedData, null, 2);
+      contentElement.textContent = formattedJson;
+    } catch (error) {
+      console.error('Ошибка при получении данных:', error);
+    }
   });
 });
