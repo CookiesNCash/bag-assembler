@@ -10,7 +10,7 @@ body {
   justify-content: center;
   min-width: 100vw;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, #3e8eff, #6effb5);
+  background-image: linear-gradient(to bottom right, #7fffd4, #00bfff);
 }
 section {
   flex: 1;
@@ -23,12 +23,20 @@ section {
 h1 {
   font-weight: 400;
 }
+.personalization {
+  box-sizing: border-box;
+  width: 500px;
+  height: 600px;
+  padding: 30px 80px;
+  border-radius: 20px;
+  background: #fff;
+}
 
-.section-top,
 .section-middle,
 .section-bottom {
   background-color: rgba(255, 255, 255, 0.8);
   margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 .header,
@@ -40,15 +48,15 @@ h1 {
 .registration-form label,
 .personalization label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 13px;
+  text-align: center;
 }
 
 .registration-form input[type="text"],
 .personalization input[type="text"] {
   width: 300px;
   padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #e2e2e2;
   box-sizing: border-box;
   margin-bottom: 10px;
 }
