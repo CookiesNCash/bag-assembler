@@ -24,20 +24,20 @@
 //   });
 // };
 
-function readFile(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+// function readFile(file) {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
 
-    reader.onload = (event) => {
-      resolve(event.target.result);
-    };
+//     reader.onload = (event) => {
+//       resolve(event.target.result);
+//     };
 
-    reader.onerror = (event) => {
-      reject(event.target.error);
-    };
+//     reader.onerror = (event) => {
+//       reject(event.target.error);
+//     };
 
-    reader.readAsText(file);
-  });
-}
+//     reader.readAsText(file);
+//   });
+// }
 // console.log(readFile('../../database/users/user.json'));
 // export { readFile };

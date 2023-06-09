@@ -1,4 +1,4 @@
-import { algorithm } from './draftAlgorithm.js';
+import algorithm from './draftAlgorithm.js';
 
 document.getElementById('personalization-form').addEventListener('submit', (event) => {
   event.preventDefault(); // Отменить отправку формы по умолчанию
