@@ -1,12 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Персонализация</title>
-</head>
-<body>
-    
-</body>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <script type="module" src="secondPageScript.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="section section-bottom">
+        <div class="personalization">
+          <h2>Опрос - Персонализация</h2>
+          <form id="personalization-form">
+            <label for="days"
+              >Продолжительность поездки (количество дней):</label
+            >
+            <input type="text" id="days" name="days" required />
+
+            <label for="cities">Город:</label>
+            <input type="text" id="cities" name="cities" required />
+
+            <label for="health">Здоровье:</label>
+            <input type="text" id="health" name="health" required />
+
+            <label for="children">Берете ли вы с собой детей?</label>
+            <input type="text" id="children" name="children" required />
+
+            <label for="pets">А питомцев?</label>
+            <input type="text" id="pets" name="pets" required />
+
+            <label for="accommodation">Тип размещения во время поездки:</label>
+            <input
+              type="text"
+              id="accommodation"
+              name="accommodation"
+              required
+            />
+
+            <button type="submit" class="btn">Отправить</button>
+            <br />
+            <button id="btn-analise">анализировать</button>
+            <div id="content"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

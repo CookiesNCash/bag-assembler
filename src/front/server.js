@@ -88,11 +88,6 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
       personalization: JSON.parse(personalizationData),
     };
-<<<<<<< HEAD
-=======
-
-    console.log('Анализ прошёл'); // Добавленный console.log
->>>>>>> b3210222d5c546475c7ed5b54a725f25fc11e992
 
     console.log('Анализ прошёл');
     res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
