@@ -88,8 +88,10 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
       personalization: JSON.parse(personalizationData),
     };
+   
+    console.log("Анализ прошёл"); // Добавленный console.log
 
-    res.json(data);
+    res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
