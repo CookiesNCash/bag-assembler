@@ -11,8 +11,6 @@ describe('API tests', () => {
       sex: 'Male',
       age: 30,
       placeLive: 'City',
-      citizenship: 'USA',
-      religion: 'Christianity',
     };
 
     personalizationData = {
