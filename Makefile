@@ -4,7 +4,7 @@ install:
 
 run:
 	clear
-	node ./bin/main.js
+	node ./bin/app.js
 
 
 reboot-dir-users:
