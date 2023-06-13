@@ -43,21 +43,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   const btn = document.getElementById('btn-analise');
   btn.addEventListener('click', async () => {
     try {
-      const response = await fetch('/get-data'); // Fetch the saved data
+      const response = await fetch('/get-data'); // Получение сохраненных данных
       const jsonData = await response.json();
+      const city = jsonData.personalization.cities;
+      const link = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
 
-      const link = 'http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=Москва';
+      // Получение данных из API
       getWeatherApi(link)
-        .then((data) => {
-          console.log(data);
+        .then((weatherData) => {
+          // Вызов функции algorithm с полученными данными
+          const transformedData = algorithm(jsonData.user, jsonData.personalization, weatherData).join(', ');
+
+          // Отображение преобразованных данных
+          const contentElement = document.getElementById('content');
+          const formattedJson = JSON.stringify(transformedData, null, 2);
+          contentElement.textContent = formattedJson;
         })
         .catch((error) => {
           console.error('Ошибка при получении данных с API:', error);
         });
-      const transformedData = algorithm(jsonData.user, jsonData.personalization).join(', ');
-      const contentElement = document.getElementById('content');
-      const formattedJson = JSON.stringify(transformedData, null, 2);
-      contentElement.textContent = formattedJson;
     } catch (error) {
       console.error('Ошибка при получении данных:', error);
     }
