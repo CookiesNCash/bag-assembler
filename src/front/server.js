@@ -2,6 +2,8 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs/promises';
+import axios from 'axios';
+
 // import morgan from 'morgan';
 
 const app = express();
@@ -86,6 +88,11 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
       personalization: JSON.parse(personalizationData),
     };
+<<<<<<< HEAD
+=======
+
+    console.log('Анализ прошёл'); // Добавленный console.log
+>>>>>>> b3210222d5c546475c7ed5b54a725f25fc11e992
 
     console.log('Анализ прошёл');
     res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
@@ -94,6 +101,50 @@ app.get('/get-data', async (req, res) => {
     res.sendStatus(500);
   }
 });
+
+//
+app.get('/api/data', (req, res) => {
+  console.log('Запрос к /api/data');
+  const { cities } = req.query;
+  const city = cities;
+  console.log(city);
+  // Выполнение запроса к API
+  const urlPath = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
+  console.log(urlPath);
+  axios.get(urlPath)
+    .then((response) => {
+      const { data } = response;
+      console.log(data);
+      // Отправка полученных данных клиенту
+      res.status(200).json(data);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
+
+// Обработчик отправки данных на API
+app.post('/api/data', (req, res) => {
+  console.log('Запрос к /api/data (POST)');
+  const { cities } = req.body;
+  const city = cities;
+  const requestData = req.body;
+
+  // Выполнение запроса к API
+  axios.post(`http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`, requestData)
+    .then((response) => {  // eslint-disable-line
+      // Обработка ответа от API
+      // ...
+      // Отправка ответа клиенту
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+});
+//
 
 app.use(express.static(__dirname));
 

@@ -1,14 +1,25 @@
 // import _ from 'lodash';
 
-const algorithm = (constContent, content) => {
+const algorithm = (constContent, content, [temp, sun]) => {
   const compoundObj = { ...constContent, ...content };
 
   const recommendedItems = [];
-  if (Number(compoundObj.days) === 1) {
-    recommendedItems.push('powerbank');
-  } else if (Number(compoundObj.days) > 1) {
-    recommendedItems.push('powerbank');
-    recommendedItems.push('зарядку для телефона');
+  if (Number(temp) <= 0) {
+    recommendedItems.push('очень теплую одежду');
+  } else if (Number(temp) <= 10 > 0) {
+    recommendedItems.push('теплую одежду');
+  } else if (Number(temp) > 10) {
+    recommendedItems.push('легкую одежду');
+  }
+  if (sun === 'Солнечно') {
+    recommendedItems.push('солнце защитные очки');
+  } else if (sun === 'Небольшой дождь') {
+    if (Number(compoundObj.days) === 1) {
+      recommendedItems.push('powerbank');
+    } else if (Number(compoundObj.days) > 1) {
+      recommendedItems.push('powerbank');
+      recommendedItems.push('зарядку для телефона');
+    }
   }
 
   if (compoundObj.sex === 'male') {
