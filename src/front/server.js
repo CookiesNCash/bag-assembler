@@ -7,7 +7,7 @@ import fs from 'fs/promises';
 const app = express();
 // const logger = morgan('combined'); // отладка и мониторинг процессов
 // app.use(logger);
-app.use(express.json());
+app.use(express.json()); // парсинг тела запроса в формате JSON.
 
 // Получение абсолютного пути к текущей директории
 const __filename = fileURLToPath(import.meta.url); // eslint-disable-line
@@ -21,15 +21,13 @@ const personalizationFilePath = path.join(usersDirectory, 'personalization.json'
 // Сохранение имени пользователя
 app.post('/save-username', (req, res) => {
   const {
-    name, sex, age, placeLive, citizenship, religion,
+    name, sex, age, placeLive,
   } = req.body;
   const data = {
     name,
     sex,
     age,
     placeLive,
-    citizenship,
-    religion,
   };
 
   // Сохранение имени пользователя в файл в формате JSON
@@ -88,9 +86,8 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
       personalization: JSON.parse(personalizationData),
     };
-   
-    console.log("Анализ прошёл"); // Добавленный console.log
 
+    console.log('Анализ прошёл');
     res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
   } catch (err) {
     console.error(err);
