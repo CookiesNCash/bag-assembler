@@ -68,7 +68,7 @@ class Data {
     return rules;
   }
 
-  processOther() { //eslint-disable-line
+  processOther() { // eslint-disable-line
     const otherInfo = 'Зубная паста, зарядка, наушники, книги';
     return otherInfo;
   }
@@ -113,5 +113,5 @@ const data2 = {
   pets: true,
 };
 
-console.log(dataHandler(data1, data2));
-// console.log(ataHandler(data1, data2).then(result => result.join(' ')));
+console.log(await dataHandler(data1, data2));
+// console.log(await dataHandler(data1, data2).then(result => result.join(' ')));
