@@ -68,7 +68,7 @@ class Data {
     return rules;
   }
 
-  processOther() {
+  processOther() { //eslint-disable-line
     const otherInfo = 'Зубная паста, зарядка, наушники, книги';
     return otherInfo;
   }
@@ -95,7 +95,7 @@ class Data {
 
 const dataHandler = async (data1, data2) => {
   const data = new Data(data1, data2);
-  return await data.processData();
+  return data.processData();
 };
 
 const data1 = {
@@ -113,5 +113,5 @@ const data2 = {
   pets: true,
 };
 
-console.log(await dataHandler(data1, data2));
-// console.log(await dataHandler(data1, data2).then(result => result.join(' ')));
+console.log(dataHandler(data1, data2));
+// console.log(ataHandler(data1, data2).then(result => result.join(' ')));
