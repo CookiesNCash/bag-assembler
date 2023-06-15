@@ -25,18 +25,15 @@ document.getElementById('personalization-form').addEventListener('submit', (even
       pets,
       accommodation,
     }),
-  })
-
-    .then((response) => {
-      if (response.ok) {
-        console.log('Информация успешно сохранена на сервере.');
-      } else {
-        console.error('Ошибка при сохранении информации на сервере.');
-      }
-    })
-    .catch((error) => {
-      console.error('Ошибка при отправке запроса:', error);
-    });
+  }).then((response) => {
+    if (response.ok) {
+      console.log('Информация успешно сохранена на сервере.');
+    } else {
+      console.error('Ошибка при сохранении информации на сервере.');
+    }
+  }).catch((error) => {
+    console.error('Ошибка при отправке запроса:', error);
+  });
 });
 
 document.addEventListener('DOMContentLoaded', async () => {
