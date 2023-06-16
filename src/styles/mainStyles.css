@@ -1,5 +1,30 @@
-.wrapper {
+body {
+  height: 100vh;
+}
+
+.background {
   background-size: 100vw 100vh;
   background-image: url("../assets/images/background_img.jpg");
   background-repeat: no-repeat;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-dir-col {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+form {
+  border: 1px solid black;
+}
+
+input {
+  border: 1px solid rgba(8, 8, 8, 0.4);
 }
