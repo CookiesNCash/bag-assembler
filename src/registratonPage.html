@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <script src="script.js" defer></script>
+    <title>Лучший сайт</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="registration-title">Регистрация</h1>
+      <form id="registrationForm" class="registration-form">
+        <div class="form-input name">
+          <label for="name">Имя пользователя</label>
+          <input type="text" id="name" placeholder="Олег" required />
+        </div>
+
+        <div class="form-input">
+          <label for="sex">Пол</label>
+          <div class="radio-group">
+            <label for="male">м</label>
+            <input type="radio" id="male" name="sex" value="male" required />
+            <label for="female">ж</label>
+            <input
+              type="radio"
+              id="female"
+              name="sex"
+              value="female"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-input">
+          <label for="age">Возраст</label>
+          <input type="date" id="age" required />
+        </div>
+
+        <div class="form-input placeLive">
+          <label for="placeLive">Место проживания</label>
+          <input type="text" id="placeLive" placeholder="Тюмень" required />
+        </div>
+
+        <button class="submit-button" type="submit">Отправить</button>
+      </form>
+    </div>
+  </body>
+</html>
