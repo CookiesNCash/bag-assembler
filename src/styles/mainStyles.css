@@ -1,5 +1,4 @@
 .wrapper {
-  height: 100vh;
-  background: rgb(93,93,128);
-  background: linear-gradient(to top, rgba(93,93,128,1) 0%, rgba(39,36,74,1) 0%, rgba(79,247,255,1) 100%); 
+  background-size: 100%;
+  background-image: url("../assets/images/background_img.jpg");
 }
