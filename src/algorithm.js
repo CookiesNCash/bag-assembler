@@ -1,9 +1,9 @@
 import axios from 'axios';
 import _ from 'lodash';
 
-class Data {
-  constructor(data1, data2) {
-    this.data = { ...data1, ...data2 };
+export class Data {
+  constructor(data) {
+    this.data = { ...data };
   }
 
   processName() {
@@ -33,7 +33,7 @@ class Data {
 
   processDays() {
     const { days } = this.data;
-    const rules = days < 10 ? 'повербанк' : 'Ножницы';
+    const rules = days < 10 ? 'Немного одежды' : 'Много одежды';
     return rules;
   }
 
@@ -47,11 +47,12 @@ class Data {
     return rules;
   }
 
-  async processCityTo() {
-    const { cityTo } = this.data;
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${cityTo}`;
+  async residence() {
+    
+    const { residence } = this.data;
+    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${residence}`;
     const response = await axios.get(apiUrl);
-    const temperature = _.floor(response.data.current.temp_c);
+    const temperature = Math.floor((response.data.current.temp_c));
     const rules = temperature < 10 ? 'Тёплую одежду' : 'Лёгкую одежду';
     return rules;
   }
@@ -80,8 +81,8 @@ class Data {
       this.processAge,
       // this.processPlaceLive,
       this.processDays,
-      this.processCityFrom,
-      this.processCityTo,
+      // this.processCityFrom,
+      this.residence,
       this.processChildren,
       this.processPets,
       this.processOther,
@@ -93,25 +94,18 @@ class Data {
   }
 }
 
-const dataHandler = async (data1, data2) => {
+const dataHandler = async (data1) => {
   const data = new Data(data1, data2);
+  console.log("Hello, World!")
   return data.processData();
+  
 };
 
-const data1 = {
-  name: 'John Doe',
+const data = {
+  name: 'Teregiray',
   sex: 'male',
-  age: '2003-03-20',
-  placeLive: 'City',
+  age: '20-03-2003',
+  residence: 'Санкт-Петербург',
 };
-
-const data2 = {
-  days: 5,
-  cityFrom: 'New York',
-  cityTo: 'London',
-  children: false,
-  pets: true,
-};
-
-console.log(await dataHandler(data1, data2));
-// console.log(await dataHandler(data1, data2).then(result => result.join(' ')));
+export default dataHandler;
+console.log(await dataHandler(data));

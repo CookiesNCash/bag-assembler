@@ -18,4 +18,23 @@ personalizationForm.addEventListener('submit', (e) => {
   const daysNum = formData.get('days');
   const city = formData.get('city');
   console.log(daysNum, city);
+
+  fetch('/save-username', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      daysNum,
+      city,
+    }),
+  })
+    .then((response) => {
+      if (response.ok) {
+        console.log('Данные успешно сохранены на сервере.');
+      } 
+    })
+    .catch((error) => {
+      console.error('Ошибка при отправке запроса:', error);
+    });
 });
