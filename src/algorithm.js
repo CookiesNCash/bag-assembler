@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+import { readFile, writeFile } from 'node:fs/promises';
 
 export class Data {
   constructor(data) {
@@ -37,20 +38,20 @@ export class Data {
     return rules;
   }
 
-  async processCityFrom() {
-    const { cityFrom } = this.data;
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${cityFrom}`;
-    const response = await axios.get(apiUrl);
-    // console.log(response)
-    const temperature = _.floor(response.data.current.temp_c);
-    const rules = temperature < 10 ? 'Одентесь потеплее' : 'Наденьте привычную одежду';
-    return rules;
-  }
+  // async processCityFrom() {
+  //   const { cityFrom } = this.data;
+  //   const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${cityFrom}`;
+  //   const response = await axios.get(apiUrl);
+  //   // console.log(response)
+  //   const temperature = _.floor(response.data.current.temp_c);
+  //   const rules = temperature < 10 ? 'Одентесь потеплее' : 'Наденьте привычную одежду';
+  //   return rules;
+  // }
 
-  async residence() {
+  async city() {
     
-    const { residence } = this.data;
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${residence}`;
+    const { city } = this.data;
+    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
     const response = await axios.get(apiUrl);
     const temperature = Math.floor((response.data.current.temp_c));
     const rules = temperature < 10 ? 'Тёплую одежду' : 'Лёгкую одежду';
@@ -82,7 +83,7 @@ export class Data {
       // this.processPlaceLive,
       this.processDays,
       // this.processCityFrom,
-      this.residence,
+      this.city,
       this.processChildren,
       this.processPets,
       this.processOther,
@@ -95,17 +96,19 @@ export class Data {
 }
 
 const dataHandler = async (data1) => {
-  const data = new Data(data1, data2);
-  console.log("Hello, World!")
-  return data.processData();
-  
+  const data = new Data(data1);
+  return data.processData();  
 };
 
 const data = {
-  name: 'Teregiray',
-  sex: 'male',
-  age: '20-03-2003',
-  residence: 'Санкт-Петербург',
-};
-export default dataHandler;
-console.log(await dataHandler(data));
+    "days":"14",
+    "city":"Санкт-Петербург"
+  }
+
+const writeFileAsync = async (filePath, data) => {
+    const addr = new URL(filePath, import.meta.url);
+    await writeFile(addr, data, { encoding: 'utf8' });
+  };
+
+  const result = await dataHandler(data);
+writeFileAsync("../database/users/result.json", result)

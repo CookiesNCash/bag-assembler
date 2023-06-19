@@ -22,10 +22,10 @@ const personalizationFilePath = path.join(usersDirectory, 'personalization.json'
 // Сохранение имени пользователя
 app.post('/save-username', (req, res) => {
   const {
-    daysNum, city,
+    days, city,
   } = req.body;
   const data = {
-    daysNum, city,
+    days, city,
   };
 
   // Сохранение имени пользователя в файл в формате JSON

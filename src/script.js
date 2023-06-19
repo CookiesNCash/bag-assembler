@@ -23,7 +23,7 @@ personalizationForm.addEventListener('submit', (e) => {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      daysNum: days,
+      days,
       city,
     }),
   }).then((response) => {
