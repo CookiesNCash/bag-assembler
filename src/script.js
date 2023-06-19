@@ -34,6 +34,16 @@ personalizationForm.addEventListener('submit', async (e) => {
     console.error('Ошибка при отправке запроса:', error);
   });
 
-  const result = await fetch('/save-username');
-  console.log(result);
+  
+  
+  const result = await fetch('/get-data');
+  try {
+    const data = await result.json();
+    console.log(data);
+    const outputElement = document.querySelector('#output');
+    outputElement.textContent = data;
+    outputElement.classList.remove('hidden');
+  } catch (error) {
+    console.error('Ошибка при получении ответа:', result.status);
+  }
 });
