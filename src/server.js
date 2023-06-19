@@ -50,7 +50,6 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
     };
 
-    console.log('Анализ прошёл');
     res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
   } catch (err) {
     console.error(err);

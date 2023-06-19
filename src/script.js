@@ -34,14 +34,17 @@ personalizationForm.addEventListener('submit', async (e) => {
     console.error('Ошибка при отправке запроса:', error);
   });
 
-  const result = await fetch('/get-data');
-  try {
-    const data = await result.json();
-    console.log(data);
-    const outputElement = document.querySelector('#output');
-    outputElement.textContent = data;
-    outputElement.classList.remove('hidden');
-  } catch (error) {
-    console.error('Ошибка при получении ответа:', result.status);
-  }
+  const result = await fetch('/get-data')
+    .then(async (res) => {
+      const data = await res.json();
+      const outputElement = document.querySelector('#output');
+      outputElement.textContent = data;
+      outputElement.classList.remove('hidden');
+      return data;
+    })
+    .catch((err) => {
+      console.error('Ошибка при получении ответа:', err.status);
+    });
+  console.log('result');
+  console.log(result);
 });
