@@ -9,7 +9,7 @@
   <script src="./script.js" defer></script>
   <title>Тестовый вариант</title>
 </head>
-<body class="background flex flex-dir-col center">
+<body class="background flex flex-dir-col jc-sb ai-center">
   <header><h1>Сборщик багажа</h1></header>
   <section>
     <form class="flex center flex-dir-col" id="nickname-form">
@@ -18,7 +18,7 @@
       <input type="submit" value="Войти">
     </form>
 
-    <form id="personalization-form" class="hidden">
+    <form id="personalization-form" class="hidden ai-center">
       <label for="days"
         >Продолжительность поездки (количество дней):</label
       >
@@ -27,7 +27,13 @@
       <input type="text" id="cities" name="city" required />
       <button type="submit" class="btn">Отправить</button>
     </form>
+
+    <div id="result" class="flex hidden">
+      <div id="output"></div>
+      <div id="manageInterface"></div>
+    </div>
+
   </section>
-  <footer></footer>
+  <footer>Footer</footer>
 </body>
 </html>

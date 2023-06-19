@@ -21,6 +21,14 @@ body {
   align-items: center;
 }
 
+.jc-sb {
+  justify-content: space-between;
+}
+
+.ai-center {
+  align-items: center;
+}
+
 form {
   border: 1px solid black;
 }
