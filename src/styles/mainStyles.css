@@ -28,3 +28,11 @@ form {
 input {
   border: 1px solid rgba(8, 8, 8, 0.4);
 }
+
+.block {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}

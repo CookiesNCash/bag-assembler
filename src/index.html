@@ -6,15 +6,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/reset.css">
   <link rel="stylesheet" href="./styles/mainStyles.css">
-  <script src="./script.js"></script>
+  <script src="./script.js" defer></script>
   <title>Тестовый вариант</title>
 </head>
 <body class="background flex flex-dir-col center">
-  <h1>Сборщик багажа</h1>
-  <form class="flex center flex-dir-col" id="get-nickname-form">
-    <label for="username"></label>
-    <input type="text" id="username" placeholder="Твой ник">
-    <a href="./personalizationPage.html"><input type="submit" value="Войти"></a>
-  </form>
+  <header><h1>Сборщик багажа</h1></header>
+  <section>
+    <form class="flex center flex-dir-col" id="nickname-form">
+      <label for="username"></label>
+      <input type="text" id="username" placeholder="Твой ник" name="nickname">
+      <input type="submit" value="Войти">
+    </form>
+
+    <form id="personalization-form" class="hidden">
+      <label for="days"
+        >Продолжительность поездки (количество дней):</label
+      >
+      <input type="text" id="days" name="days" required />
+      <label for="city">Город:</label>
+      <input type="text" id="cities" name="city" required />
+      <button type="submit" class="btn">Отправить</button>
+    </form>
+  </section>
+  <footer></footer>
 </body>
 </html>
