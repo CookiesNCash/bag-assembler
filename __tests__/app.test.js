@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../archive/front/server.js';
+import app from '../src/server.js';
 
 describe('API tests', () => {
   let userData;

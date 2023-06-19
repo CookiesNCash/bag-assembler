@@ -1,8 +1,8 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { readFile, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 
-export class Data {
+class Data {
   constructor(data) {
     this.data = { ...data };
   }
@@ -49,7 +49,6 @@ export class Data {
   // }
 
   async city() {
-    
     const { city } = this.data;
     const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
     const response = await axios.get(apiUrl);
@@ -97,18 +96,18 @@ export class Data {
 
 const dataHandler = async (data1) => {
   const data = new Data(data1);
-  return data.processData();  
+  return data.processData();
 };
 
-const data = {
-    "days":"14",
-    "city":"Санкт-Петербург"
-  }
+const dataInput = {
+  days: '22',
+  city: 'Санкт-Петербург',
+};
 
 const writeFileAsync = async (filePath, data) => {
-    const addr = new URL(filePath, import.meta.url);
-    await writeFile(addr, data, { encoding: 'utf8' });
-  };
+  const addr = new URL(filePath, import.meta.url);
+  await writeFile(addr, data, { encoding: 'utf8' });
+};
 
-  const result = await dataHandler(data);
-writeFileAsync("../database/users/result.json", result)
+const result = await dataHandler(dataInput);
+writeFileAsync('../database/users/result.json', result);

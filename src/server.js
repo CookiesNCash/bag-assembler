@@ -95,7 +95,6 @@ app.get('/get-data', async (req, res) => {
 
 //
 
-
 app.use(express.static(__dirname));
 
 export default app;
