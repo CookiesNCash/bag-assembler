@@ -10,7 +10,7 @@ nicknameForm.addEventListener('submit', (e) => {
   personalizationForm.classList.remove('hidden');
 });
 
-personalizationForm.addEventListener('submit', (e) => {
+personalizationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const days = formData.get('days');
@@ -33,4 +33,7 @@ personalizationForm.addEventListener('submit', (e) => {
   }).catch((error) => {
     console.error('Ошибка при отправке запроса:', error);
   });
+
+  const result = await fetch('/save-username');
+  console.log(result);
 });
