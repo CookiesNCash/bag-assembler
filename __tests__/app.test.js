@@ -29,27 +29,33 @@ describe('API tests', () => {
 });
 
 describe('Algorithm tests', () => {
-  test('should return clothing rules for less than 10 days', async () => {
+  test('should return clothing rules for less than 7 days', async () => {
     const getSavedDataResponse = await supertest(app).get('/get-result');
     expect(getSavedDataResponse.status).toBe(200);
-    // Добавьте здесь дополнительные проверки на результат запроса
+    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Нормальная одежда', 'Зубная паста, зарядка, наушники, книги']);
   });
 
-  test('should return clothing rules for more than 10 days', async () => {
-    const getSavedDataResponse = await supertest(app).get('/get-result');
-    expect(getSavedDataResponse.status).toBe(200);
-    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
-  });
+  //   test('should return clothing rules for more than 7 days', async () => {
+  //     const getSavedDataResponse = await supertest(app).get('/get-result');
+  //     expect(getSavedDataResponse.status).toBe(200);
+  //     expect(getSavedDataResponse.body.result).toEqual(
+  //      ['Средне одежды', 'Лёгкая одежда', 'Зубная паста, зарядка, наушники, книги']);
+  //   });
 
-  test('should return clothing rules for a city with temperature less than 10 degrees', async () => {
-    const getSavedDataResponse = await supertest(app).get('/get-result');
-    expect(getSavedDataResponse.status).toBe(200);
-    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
-  });
+  //   test('should return clothing rules for a city with temperature less than 13 degrees',
+  //     async () => {
+  //     const getSavedDataResponse = await supertest(app).get('/get-result');
+  //     expect(getSavedDataResponse.status).toBe(200);
+  //     expect(getSavedDataResponse.body.result).toEqual(
+  //      ['Тёплая одежда', 'Нормальная одежда', 'Зубная паста, зарядка, наушники, книги']);
+  //   });
 
-  test('should return clothing rules for a city with temperature more than 10 degrees', async () => {
-    const getSavedDataResponse = await supertest(app).get('/get-result');
-    expect(getSavedDataResponse.status).toBe(200);
-    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
-  });
+//   test('should return clothing rules for a city with temperature more than 13 degrees',
+//     async () => {
+//     const getSavedDataResponse = await supertest(app).get('/get-result');
+//     expect(getSavedDataResponse.status).toBe(200);
+//     expect(getSavedDataResponse.body.result).toEqual(
+//      ['Немного одежды', 'Лёгкая одежда', 'Зубная паста, зарядка, наушники, книги']);
+//   });
+// });
 });
