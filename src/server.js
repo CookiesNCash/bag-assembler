@@ -17,37 +17,6 @@ const usersDirectory = path.resolve(__dirname, '../database/users/');
 const userFilePath = path.join(usersDirectory, 'user.json');
 const resultFilePath = path.join(usersDirectory, 'result.json');
 
-app.post('/save-username', (req, res) => {
-  const { days, city } = req.body;
-  const data = {
-    days,
-    city,
-  };
-
-  fs.writeFile(userFilePath, JSON.stringify(data))
-    .then(() => {
-      console.log('Имя пользователя успешно сохранено на сервере.');
-      res.sendStatus(200);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-});
-
-app.get('/get-data', async (req, res) => {
-  try {
-    const userData = await fs.readFile(userFilePath, 'utf-8');
-    const data = {
-      user: JSON.parse(userData),
-    };
-    res.status(200).json(data);
-  } catch (err) {
-    console.error(err);
-    res.sendStatus(500);
-  }
-});
-
 app.post('/save-personalization', async (req, res) => {
   const { days, city } = req.body;
 
