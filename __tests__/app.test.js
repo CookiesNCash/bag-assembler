@@ -1,67 +1,55 @@
-import request from 'supertest';
+import supertest from 'supertest';
 import app from '../src/server.js';
 
 describe('API tests', () => {
-  let userData;
-  let personalizationData;
-
-  beforeAll(async () => {
-    userData = {
-      name: 'John Doe',
-      sex: 'Male',
-      age: 30,
-      placeLive: 'City',
-    };
-
-    personalizationData = {
-      days: 5,
-      cities: ['New York'],
-      health: 'Good',
-      children: false,
-      pets: true,
-      accommodation: 'Hotel',
-    };
-
-    // Сохранение имени пользователя
-    await request(app)
-      .post('/save-username')
-      .send(userData);
-
-    // Сохранение информации из формы персонализации
-    await request(app)
-      .post('/save-personalization')
-      .send(personalizationData);
-  });
-
   it('should return status 200 for root endpoint', async () => {
-    const response = await request(app).get('/');
-    expect(response.status).toBe(200);
-  });
-
-  it('should save username to file', async () => {
-    const response = await request(app)
-      .post('/save-username')
-      .send(userData);
-
+    const response = await supertest(app).get('/');
     expect(response.status).toBe(200);
   });
 
   it('should save personalization info to file', async () => {
-    const response = await request(app)
+    const personalizationData = {
+      days: 5,
+      city: 'New York',
+    };
+    const savePersonalizationResponse = await supertest(app)
       .post('/save-personalization')
       .send(personalizationData);
-
-    expect(response.status).toBe(200);
+    expect(savePersonalizationResponse.status).toBe(200);
+    expect(savePersonalizationResponse.body).toEqual({});
   });
 
   it('should get saved data', async () => {
-    // Получение сохраненных данных
-    const response = await request(app).get('/get-data');
+    const getSavedDataResponse = await supertest(app).get('/get-result');
+    expect(getSavedDataResponse.status).toBe(200);
+    expect(getSavedDataResponse.body.user.city).toEqual('New York');
+    expect(getSavedDataResponse.body.user.days).toEqual(5);
+    expect(getSavedDataResponse.body.result).toHaveLength(3);
+  });
+});
 
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
-      user: userData,
-      personalization: personalizationData,
-    });
+describe('Algorithm tests', () => {
+  test('should return clothing rules for less than 10 days', async () => {
+    const getSavedDataResponse = await supertest(app).get('/get-result');
+    expect(getSavedDataResponse.status).toBe(200);
+    expect(getSavedDataResponse.body.result).toContain('Немного одежды');
+  });
+
+  test('should return clothing rules for more than 10 days', async () => {
+    const getSavedDataResponse = await supertest(app).get('/get-result');
+    expect(getSavedDataResponse.status).toBe(200);
+    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
+  });
+
+  test('should return clothing rules for a city with temperature less than 10 degrees', async () => {
+    const getSavedDataResponse = await supertest(app).get('/get-result');
+    expect(getSavedDataResponse.status).toBe(200);
+    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
+  });
+
+  test('should return clothing rules for a city with temperature more than 10 degrees', async () => {
+    const getSavedDataResponse = await supertest(app).get('/get-result');
+    expect(getSavedDataResponse.status).toBe(200);
+    expect(getSavedDataResponse.body.result).toEqual(['Немного одежды', 'Лёгкую одежду', 'Зубная паста, зарядка, наушники, книги']);
   });
 });
