@@ -2,32 +2,28 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs/promises';
+import algorithm from './algorithm.js';
 
-// import morgan from 'morgan';
+const { dataHandler } = algorithm;
 
 const app = express();
-// const logger = morgan('combined'); // отладка и мониторинг процессов
-// app.use(logger);
-app.use(express.json()); // парсинг тела запроса в формате JSON.
 
-// Получение абсолютного пути к текущей директории
+app.use(express.json());
+
 const __filename = fileURLToPath(import.meta.url); // eslint-disable-line
 const __dirname = dirname(__filename); // eslint-disable-line
 
-// Создание абсолютного пути к файлам user.json и personalization.json
 const usersDirectory = path.resolve(__dirname, '../database/users/');
 const userFilePath = path.join(usersDirectory, 'user.json');
+const resultFilePath = path.join(usersDirectory, 'result.json');
 
-// Сохранение имени пользователя
 app.post('/save-username', (req, res) => {
-  const {
-    days, city,
-  } = req.body;
+  const { days, city } = req.body;
   const data = {
-    days, city,
+    days,
+    city,
   };
 
-  // Сохранение имени пользователя в файл в формате JSON
   fs.writeFile(userFilePath, JSON.stringify(data))
     .then(() => {
       console.log('Имя пользователя успешно сохранено на сервере.');
@@ -39,9 +35,6 @@ app.post('/save-username', (req, res) => {
     });
 });
 
-// Сохранение информации из формы персонализации
-
-// Получение сохраненных данных
 app.get('/get-data', async (req, res) => {
   try {
     const userData = await fs.readFile(userFilePath, 'utf-8');
@@ -50,14 +43,45 @@ app.get('/get-data', async (req, res) => {
       user: JSON.parse(userData),
     };
 
-    res.status(200).json(data); // Отправка статуса 200 и данных в формате JSON
+    res.status(200).json(data);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
   }
 });
 
-//
+app.post('/save-personalization', async (req, res) => {
+  const { days, city } = req.body;
+
+  try {
+    const userData = await fs.readFile(userFilePath, 'utf-8');
+    const userDataParsed = JSON.parse(userData);
+
+    userDataParsed.days = days;
+    userDataParsed.city = city;
+
+    await fs.writeFile(userFilePath, JSON.stringify(userDataParsed));
+    console.log('Данные о персонализации успешно сохранены в user.json');
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Ошибка при сохранении данных о персонализации:', error);
+    res.status(500).json({ error: 'Ошибка при сохранении данных о персонализации' });
+  }
+});
+
+app.get('/get-result', async (req, res) => {
+  try {
+    const userData = await fs.readFile(userFilePath, 'utf-8');
+    const userDataParsed = JSON.parse(userData);
+    const result = await dataHandler(userDataParsed);
+    await fs.writeFile(resultFilePath, JSON.stringify(result));
+    console.log('Результат успешно сохранен в result.json');
+    res.sendStatus(200);
+  } catch (error) {
+    console.error('Ошибка при сохранении результата:', error);
+    res.status(500).json({ error: 'Ошибка при сохранении результата' });
+  }
+});
 
 app.use(express.static(__dirname));
 
