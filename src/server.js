@@ -81,7 +81,6 @@ app.get('/get-result', async (req, res) => {
   }
 });
 
-
 app.use(express.static(__dirname));
 
 export default app;

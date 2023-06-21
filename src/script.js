@@ -43,4 +43,3 @@ personalizationForm.addEventListener('submit', async (e) => {
     console.error('Ошибка при отправке данных:', error);
   }
 });
-
