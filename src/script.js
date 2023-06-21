@@ -2,12 +2,12 @@ const nicknameForm = document.querySelector('#nickname-form');
 const personalizationForm = document.querySelector('#personalization-form');
 const resultDiv = document.querySelector('#result');
 const outputUl = document.querySelector('#output');
-// const manageInterfaceForm = document.querySelector('#manageInterface');
 const elInput = document.querySelector('input[name="element"]');
 const addButton = document.querySelector('#add');
 const removeButton = document.querySelector('#remove');
 
 const state = {
+  userName: null,
   bag: [],
 };
 
@@ -25,7 +25,7 @@ nicknameForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const nickname = formData.get('nickname');
-  console.log(nickname);
+  state.userName = nickname;
   nicknameForm.classList.add('hidden');
   personalizationForm.classList.remove('hidden');
 });
@@ -47,8 +47,6 @@ personalizationForm.addEventListener('submit', async (e) => {
     }),
   }).then(async (response) => {
     if (response.ok) {
-      console.log('Данные о персонализации успешно сохранены.');
-
       const resultResponse = await fetch('/get-result');
       const resultData = await resultResponse.json();
 
@@ -56,9 +54,6 @@ personalizationForm.addEventListener('submit', async (e) => {
 
       state.bag = [...result];
       renderBag(state.bag, outputUl);
-
-      console.log('Содержимое файла user.json:', resultData.user);
-      console.log('Содержимое файла result.json:', resultData.result);
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
     }
@@ -75,14 +70,12 @@ addButton.addEventListener('click', (e) => {
   const { value } = elInput;
   const newBag = [...state.bag, value];
   state.bag = newBag;
-  console.log(state.bag);
   renderBag(state.bag, outputUl);
 });
 
 removeButton.addEventListener('click', (e) => {
   e.preventDefault();
-  // const { value } = elInput;
-  console.log(outputUl);
-  console.log(outputUl.childNodes);
-  console.log(outputUl.children);
+  const { value } = elInput;
+  state.bag = state.bag.filter((el) => el !== value);
+  renderBag(state.bag, outputUl);
 });
