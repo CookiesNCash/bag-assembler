@@ -3,14 +3,15 @@ import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs/promises';
 import algorithm from './algorithm.js';
-const dataHandler = algorithm.dataHandler;
+
+const { dataHandler } = algorithm;
 
 const app = express();
 
 app.use(express.json());
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __filename = fileURLToPath(import.meta.url); // eslint-disable-line
+const __dirname = dirname(__filename); // eslint-disable-line
 
 const usersDirectory = path.resolve(__dirname, '../database/users/');
 const userFilePath = path.join(usersDirectory, 'user.json');

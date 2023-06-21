@@ -1,5 +1,5 @@
 import axios from 'axios';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 class Data {
   constructor(data) {
@@ -54,7 +54,7 @@ class Data {
   //   return rules;
   // }
 
-  processOther() {
+  processOther() { //eslint-disable-line
     const otherInfo = 'Зубная паста, зарядка, наушники, книги';
     return otherInfo;
   }
@@ -81,8 +81,6 @@ const dataHandler = async (data) => {
   const dataProcessor = new Data(data);
   return dataProcessor.processData();
 };
-
-
 
 export default {
   dataHandler,

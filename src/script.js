@@ -38,7 +38,6 @@ personalizationForm.addEventListener('submit', async (e) => {
 
       const consoleOutput = result.join(', ');
       console.log(consoleOutput);
-
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
     }
