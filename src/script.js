@@ -33,11 +33,9 @@ personalizationForm.addEventListener('submit', async (e) => {
 
       const resultResponse = await fetch('/get-result');
       const resultData = await resultResponse.json();
-      const result = resultData;
-      console.log(result);
 
-      const consoleOutput = result.join(', ');
-      console.log(consoleOutput);
+      console.log('Содержимое файла user.json:', resultData.user);
+      console.log('Содержимое файла result.json:', resultData.result);
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
     }
@@ -45,3 +43,4 @@ personalizationForm.addEventListener('submit', async (e) => {
     console.error('Ошибка при отправке данных:', error);
   }
 });
+

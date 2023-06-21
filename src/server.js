@@ -38,11 +38,9 @@ app.post('/save-username', (req, res) => {
 app.get('/get-data', async (req, res) => {
   try {
     const userData = await fs.readFile(userFilePath, 'utf-8');
-
     const data = {
       user: JSON.parse(userData),
     };
-
     res.status(200).json(data);
   } catch (err) {
     console.error(err);
@@ -76,12 +74,13 @@ app.get('/get-result', async (req, res) => {
     const result = await dataHandler(userDataParsed);
     await fs.writeFile(resultFilePath, JSON.stringify(result));
     console.log('Результат успешно сохранен в result.json');
-    res.sendStatus(200);
+    res.status(200).json({ user: userDataParsed, result });
   } catch (error) {
     console.error('Ошибка при сохранении результата:', error);
     res.status(500).json({ error: 'Ошибка при сохранении результата' });
   }
 });
+
 
 app.use(express.static(__dirname));
 
