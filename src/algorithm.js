@@ -29,8 +29,16 @@ class Data {
 
   processDays() {
     const { days } = this.data;
-    const rules = days < 10 ? 'Немного одежды' : 'Много одежды';
-    return rules;
+    const dayIntervals = [
+      { min: Number.NEGATIVE_INFINITY, max: 7, state: 'Немного одежды' },
+      { min: 8, max: 20, state: 'Средне одежды' },
+      { min: 21, max: Number.POSITIVE_INFINITY, state: 'Много одежды' },
+    ];
+    // interval => - Это запись стрелочной функции с параметром interval
+    const currentDays = dayIntervals.find(
+      (interval) => days >= interval.min && days < interval.max,
+    );
+    return currentDays ? currentDays.state : undefined;
   }
 
   async city() {
@@ -38,8 +46,16 @@ class Data {
     const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
     const response = await axios.get(apiUrl);
     const temperature = Math.floor(response.data.current.temp_c);
-    const rules = temperature < 10 ? 'Тёплую одежду' : 'Лёгкую одежду';
-    return rules;
+    const weatherIntervals = [
+      { min: Number.NEGATIVE_INFINITY, max: 13, state: 'Холодно' },
+      { min: 14, max: 22, state: 'Нормально' },
+      { min: 23, max: Number.POSITIVE_INFINITY, state: 'Жарко' },
+    ];
+    const currentWeather = weatherIntervals.find(
+      (interval) => temperature >= interval.min && temperature < interval.max,
+    );
+
+    return currentWeather ? currentWeather.state : undefined;
   }
 
   // processChildren() {
