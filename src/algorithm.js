@@ -47,9 +47,9 @@ class Data {
     const response = await axios.get(apiUrl);
     const temperature = Math.floor(response.data.current.temp_c);
     const weatherIntervals = [
-      { min: Number.NEGATIVE_INFINITY, max: 13, state: 'Холодно' },
-      { min: 14, max: 22, state: 'Нормально' },
-      { min: 23, max: Number.POSITIVE_INFINITY, state: 'Жарко' },
+      { min: Number.NEGATIVE_INFINITY, max: 13, state: 'Тёплая одежда' },
+      { min: 14, max: 22, state: 'Нормальная одежда' },
+      { min: 23, max: Number.POSITIVE_INFINITY, state: 'Лёгкая одежда' },
     ];
     const currentWeather = weatherIntervals.find(
       (interval) => temperature >= interval.min && temperature < interval.max,
