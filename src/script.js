@@ -22,18 +22,16 @@ personalizationForm.addEventListener('submit', async (e) => {
   const days = formData.get('days');
   const city = formData.get('city');
 
-  try {
-    const response = await fetch('/save-personalization', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        days,
-        city,
-      }),
-    });
-
+  await fetch('/save-personalization', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      days,
+      city,
+    }),
+  }).then(async (response) => {
     if (response.ok) {
       console.log('Данные о персонализации успешно сохранены.');
 
@@ -45,12 +43,14 @@ personalizationForm.addEventListener('submit', async (e) => {
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
     }
-  } catch (error) {
+  }).catch((error) => {
     console.error('Ошибка при отправке данных:', error);
-  }
+  });
+
   personalizationForm.classList.add('hidden');
   resultDiv.classList.remove('hidden');
 });
+
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
