@@ -7,6 +7,20 @@ const elInput = document.querySelector('input[name="element"]');
 const addButton = document.querySelector('#add');
 const removeButton = document.querySelector('#remove');
 
+const state = {
+  bag: [],
+};
+
+const renderBag = (bag, ul) => {
+  ul.innerHTML = '';
+  bag.forEach((el) => {
+    const li = document.createElement('li');
+    li.textContent = el;
+    li.id = el;
+    ul.append(li);
+  });
+};
+
 nicknameForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
@@ -38,6 +52,11 @@ personalizationForm.addEventListener('submit', async (e) => {
       const resultResponse = await fetch('/get-result');
       const resultData = await resultResponse.json();
 
+      const { result } = resultData;
+
+      state.bag = [...result];
+      renderBag(state.bag, outputUl);
+
       console.log('Содержимое файла user.json:', resultData.user);
       console.log('Содержимое файла result.json:', resultData.result);
     } else {
@@ -54,10 +73,10 @@ personalizationForm.addEventListener('submit', async (e) => {
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
-  const li = document.createElement('li');
-  li.textContent = value;
-  li.id = value;
-  outputUl.append(li);
+  const newBag = [...state.bag, value];
+  state.bag = newBag;
+  console.log(state.bag)
+  renderBag(state.bag, outputUl);
 });
 
 removeButton.addEventListener('click', (e) => {
