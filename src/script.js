@@ -12,7 +12,7 @@ const state = {
 };
 
 const renderBag = (bag, ul) => {
-  ul.innerHTML = '';
+  ul.innerHTML = ''; //eslint-disable-line
   bag.forEach((el) => {
     const li = document.createElement('li');
     li.textContent = el;
@@ -75,7 +75,7 @@ addButton.addEventListener('click', (e) => {
   const { value } = elInput;
   const newBag = [...state.bag, value];
   state.bag = newBag;
-  console.log(state.bag)
+  console.log(state.bag);
   renderBag(state.bag, outputUl);
 });
 
