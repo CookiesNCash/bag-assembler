@@ -2,9 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs/promises';
-import algorithm from './algorithm.js';
-
-const { dataHandler } = algorithm;
+import dataHandler from './algorithm.js';
 
 const app = express();
 
