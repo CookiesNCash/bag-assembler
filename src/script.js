@@ -20,16 +20,25 @@ const state = {
 
 const renderBag = (bag, ul) => {
   ul.innerHTML = ''; //eslint-disable-line
-  bag.forEach((el) => {
+  bag.forEach(([el, isChecked]) => {
     const li = document.createElement('li');
     const input = document.createElement('input');
     input.type = 'checkbox';
+    input.checked = isChecked;
     const span = document.createElement('span');
     span.textContent = el;
     li.append(input);
     li.append(span);
     li.id = el;
     ul.append(li);
+
+    input.addEventListener('change', (e) => {
+      const checkedBool = e.target.checked;
+      const { id } = e.target.parentNode;
+      state.bag.forEach((bagEl) => {
+        if (bagEl[0] === id) bagEl[1] = checkedBool; //eslint-disable-line
+      });
+    });
   });
 };
 
@@ -66,7 +75,7 @@ personalizationForm.addEventListener('submit', async (e) => {
 
       const { result } = resultData;
 
-      state.bag = [...result];
+      state.bag = result.map((el) => [el, false]);
       renderBag(state.bag, outputUl);
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
