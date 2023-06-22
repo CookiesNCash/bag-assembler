@@ -19,17 +19,17 @@
       <input type="submit" value="Войти">
     </form>
 
-    <form id="personalization-form" class="hidden ai-center">
+    <form id="personalization-form" class="hidden flex center flex-dir-col">
       <label for="days"
         >Продолжительность поездки (количество дней):</label
       >
-      <input type="text" id="days" name="days" required />
+      <input type="number" id="days" name="days" required />
       <label for="city">Город:</label>
       <input type="text" id="cities" name="city" required />
       <button type="submit" class="btn">Отправить</button>
     </form>
 
-    <div id="result" class="flex hidden">
+    <div id="result" class="hidden flex center flex-dir-col">
       <ul id="output"></ul>
       <form id="manageInterface">
         <input type="text" name="element">

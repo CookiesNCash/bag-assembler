@@ -1,10 +1,17 @@
 const nicknameForm = document.querySelector('#nickname-form');
+const userNameInput = document.querySelector('#username');
+
 const personalizationForm = document.querySelector('#personalization-form');
+const daysInput = document.querySelector('#days');
+
 const resultDiv = document.querySelector('#result');
 const outputUl = document.querySelector('#output');
+const interfaceForm = document.querySelector('#manageInterface');
 const elInput = document.querySelector('input[name="element"]');
 const addButton = document.querySelector('#add');
 const removeButton = document.querySelector('#remove');
+
+userNameInput.focus();
 
 const state = {
   userName: null,
@@ -28,6 +35,8 @@ nicknameForm.addEventListener('submit', (e) => {
   state.userName = nickname;
   nicknameForm.classList.add('hidden');
   personalizationForm.classList.remove('hidden');
+  nicknameForm.reset();
+  daysInput.focus();
 });
 
 personalizationForm.addEventListener('submit', async (e) => {
@@ -63,6 +72,9 @@ personalizationForm.addEventListener('submit', async (e) => {
 
   personalizationForm.classList.add('hidden');
   resultDiv.classList.remove('hidden');
+
+  personalizationForm.reset();
+  elInput.focus();
 });
 
 addButton.addEventListener('click', (e) => {
@@ -71,6 +83,8 @@ addButton.addEventListener('click', (e) => {
   const newBag = [...state.bag, value];
   state.bag = newBag;
   renderBag(state.bag, outputUl);
+  interfaceForm.reset();
+  elInput.focus();
 });
 
 removeButton.addEventListener('click', (e) => {
@@ -78,4 +92,6 @@ removeButton.addEventListener('click', (e) => {
   const { value } = elInput;
   state.bag = state.bag.filter((el) => el !== value);
   renderBag(state.bag, outputUl);
+  interfaceForm.reset();
+  elInput.focus();
 });
