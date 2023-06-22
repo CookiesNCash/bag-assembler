@@ -22,7 +22,12 @@ const renderBag = (bag, ul) => {
   ul.innerHTML = ''; //eslint-disable-line
   bag.forEach((el) => {
     const li = document.createElement('li');
-    li.textContent = el;
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    const span = document.createElement('span');
+    span.textContent = el;
+    li.append(input);
+    li.append(span);
     li.id = el;
     ul.append(li);
   });
