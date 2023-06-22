@@ -94,7 +94,7 @@ personalizationForm.addEventListener('submit', async (e) => {
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
-  const newBag = [...state.bag, value];
+  const newBag = [...state.bag, [value, false]];
   state.bag = newBag;
   renderBag(state.bag, outputUl);
   interfaceForm.reset();
@@ -104,7 +104,7 @@ addButton.addEventListener('click', (e) => {
 removeButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
-  state.bag = state.bag.filter((el) => el !== value);
+  state.bag = state.bag.filter(([el]) => el !== value);
   renderBag(state.bag, outputUl);
   interfaceForm.reset();
   elInput.focus();
