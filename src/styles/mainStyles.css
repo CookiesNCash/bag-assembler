@@ -121,7 +121,7 @@ font-size:1.2em
 transform:perspective(8em) rotateX(11deg) scale(1.2);
 text-shadow:0 -1px 15px black,0 1px 0 #1a1401,0 2px 0 #050400,0 0 0 #0e0b00,0 1px 0 #000000,0 2px 0 #000000,0 2px 30px rgba(10, 8, 1, 0.6)
 }
-#username {
+.inputReg {
   text-align: center;
   }
   ::-webkit-input-placeholder {
