@@ -2,7 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path, { dirname } from 'path';
 import fs from 'fs/promises';
-import dataHandler from './algorithm.js';
+import calculateLuggage from './algorithm.js';
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.get('/get-result', async (req, res) => {
   try {
     const userData = await fs.readFile(userFilePath, 'utf-8');
     const userDataParsed = JSON.parse(userData);
-    const result = await dataHandler(userDataParsed);
+    const result = await calculateLuggage(userDataParsed);
     await fs.writeFile(resultFilePath, JSON.stringify(result));
     console.log('Результат успешно сохранен в result.json');
     res.status(200).json({ user: userDataParsed, result });

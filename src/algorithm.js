@@ -1,44 +1,50 @@
-import axios from 'axios';
+import Data from "./Data.js";
+import ClothingItem from "./ClothingItem.js";
 
-class Data {
-  constructor(data) {
-    this.data = { ...data };
-  }
-
-  processDays() {
-    const { days } = this.data;
-    return days;
-  }
-
-  async city() {
-    const { city } = this.data;
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${city}`;
-    const response = await axios.get(apiUrl);
-    const temperature = Math.floor(response.data.current.temp_c);
-    return temperature;
-  }
-
-  processOther() { // eslint-disable-line
-    const otherInfo = 'Зубная паста, зарядка, наушники, книги';
-    return otherInfo;
-  }
-
-  async processData() {
-    const methods = [
-      this.processDays,
-      this.city,
-      this.processOther,
-    ];
-
-    const results = await Promise.all(methods.map((method) => method.call(this)));
-    const filteredResults = results.filter((result) => result !== null);
-    return filteredResults;
-  }
-}
-
-const dataHandler = async (data) => {
+const calculateLuggage = async (data) => {
   const dataProcessor = new Data(data);
-  return dataProcessor.processData();
+  const currentTemperature = await dataProcessor.getTemperature();
+  const currentDays = dataProcessor.getDays();
+
+  const collectedItems = [];
+
+  if (currentTemperature < 10) {
+    collectedItems.push(ClothingItem.addCoat(), ClothingItem.addSweater());
+  } else if (currentTemperature >= 10 && currentTemperature < 20) {
+    collectedItems.push(ClothingItem.addJacket());
+  } else {
+    collectedItems.push(ClothingItem.addShorts());
+  }
+
+  const tShirtsNeeded = Math.ceil(currentDays / 2);
+  const pantsNeeded = Math.ceil(currentDays / 4);
+  const sweatShirtNeeded = Math.ceil(currentDays / 3);
+
+  for (let i = 0; i < tShirtsNeeded; i++) {
+    collectedItems.push(ClothingItem.addTShirt());
+  }
+
+  for (let i = 0; i < sweatShirtNeeded; i++) {
+    collectedItems.push(ClothingItem.addSweatshirt());
+  }
+
+  for (let i = 0; i < pantsNeeded; i++) {
+    collectedItems.push(ClothingItem.addPants());
+  }
+
+  const luggage = collectedItems.reduce((acc, item) => {
+    const existingItem = acc.find((collectedItem) => collectedItem.item === item.item);
+    if (existingItem) {
+      existingItem.count++;
+    } else {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
+
+  const formattedLuggage = luggage.map((item) => `${item.item} - ${item.count}`);
+
+  return formattedLuggage;
 };
 
-export default dataHandler;
+export default calculateLuggage;
