@@ -20,9 +20,9 @@ const calculateLuggage = async (data) => {
 
   // Формулы для количества вещей в зависимости от продолжительности поездки;
 
-  const tShirtsNeeded = Math.ceil(currentDays / 3);
-  const pantsNeeded = Math.ceil(currentDays / 5);
-  const sweatShirtNeeded = Math.ceil(currentDays / 4);
+  const tShirtsNeeded = Math.floor(currentDays / 3);
+  const pantsNeeded = Math.floor(currentDays / 5);
+  const sweatShirtNeeded = Math.floor(currentDays / 4);
 
   // Добавляем вещи
 
@@ -41,7 +41,7 @@ const calculateLuggage = async (data) => {
   // Собираем багаж и считаем кол-во для каждого предмета
 
   const luggage = collectedItems.reduce((acc, item) => {
-    const existingItem = acc.find((collectedItem) => collectedItem[0] === item[0]);
+    const existingItem = acc.find((collectedItem) => collectedItem[0] === item[0]); // ищем элемент, у которого первый элемент [0] равен имени предмета item[0].
     if (existingItem) {
       existingItem[1] += 1;
     } else {
