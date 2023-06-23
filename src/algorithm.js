@@ -1,5 +1,5 @@
-import Data from './Data.js';
-import ClothingItem from './ClothingItem.js';
+import Data from './classes/Data.js';
+import ClothingItem from './classes/ClothingItem.js';
 
 const calculateLuggage = async (data) => {
   const dataProcessor = new Data(data);
@@ -22,7 +22,7 @@ const calculateLuggage = async (data) => {
 
   const tShirtsNeeded = Math.floor(currentDays / 3);
   const pantsNeeded = Math.floor(currentDays / 5);
-  const sweatShirtNeeded = Math.floor(currentDays / 4);
+  const sweatShirtNeeded = Math.floor(currentDays / 5);
 
   // Добавляем вещи
 
