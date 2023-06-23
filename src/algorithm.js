@@ -8,6 +8,8 @@ const calculateLuggage = async (data) => {
 
   const collectedItems = [];
 
+  // Смотри температуру и в зависимости от неё добавляем специальную одежду
+
   if (currentTemperature < 10) {
     collectedItems.push(ClothingItem.addCoat(), ClothingItem.addSweater());
   } else if (currentTemperature >= 10 && currentTemperature < 20) {
@@ -16,9 +18,13 @@ const calculateLuggage = async (data) => {
     collectedItems.push(ClothingItem.addShorts());
   }
 
+  // Формулы для количества вещей в зависимости от продолжительности поездки;
+
   const tShirtsNeeded = Math.ceil(currentDays / 3);
   const pantsNeeded = Math.ceil(currentDays / 5);
   const sweatShirtNeeded = Math.ceil(currentDays / 4);
+
+  // Добавляем вещи
 
   for (let i = 0; i < tShirtsNeeded; i += 1) {
     collectedItems.push(ClothingItem.addTShirt());
@@ -32,17 +38,19 @@ const calculateLuggage = async (data) => {
     collectedItems.push(ClothingItem.addPants());
   }
 
+  // Собираем багаж и считаем кол-во для каждого предмета
+
   const luggage = collectedItems.reduce((acc, item) => {
-    const existingItem = acc.find((collectedItem) => collectedItem.item === item.item);
+    const existingItem = acc.find((collectedItem) => collectedItem[0] === item[0]);
     if (existingItem) {
-      existingItem.count += 1;
+      existingItem[1] += 1;
     } else {
-      acc.push(item);
+      acc.push([item[0], 1]);
     }
     return acc;
   }, []);
 
-  const formattedLuggage = luggage.map((item) => `${item.item} - ${item.count}`);
+  const formattedLuggage = luggage.map((item) => `[${item[0]} - ${item[1]}]`);
 
   return formattedLuggage;
 };
