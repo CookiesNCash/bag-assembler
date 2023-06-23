@@ -50,7 +50,7 @@ const calculateLuggage = async (data) => {
     return acc;
   }, []);
 
-  const formattedLuggage = luggage.map((item) => `[${item[0]} - ${item[1]}]`);
+  const formattedLuggage = luggage.map((item) => `${item[0]} - ${item[1]}`);
 
   return formattedLuggage;
 };
