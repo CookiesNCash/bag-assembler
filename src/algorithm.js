@@ -16,9 +16,9 @@ const calculateLuggage = async (data) => {
     collectedItems.push(ClothingItem.addShorts());
   }
 
-  const tShirtsNeeded = Math.ceil(currentDays / 2);
-  const pantsNeeded = Math.ceil(currentDays / 4);
-  const sweatShirtNeeded = Math.ceil(currentDays / 3);
+  const tShirtsNeeded = Math.ceil(currentDays / 3);
+  const pantsNeeded = Math.ceil(currentDays / 5);
+  const sweatShirtNeeded = Math.ceil(currentDays / 4);
 
   for (let i = 0; i < tShirtsNeeded; i++) {
     collectedItems.push(ClothingItem.addTShirt());
