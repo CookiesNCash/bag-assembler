@@ -88,3 +88,7 @@ label {
 legend {
 	display: block;
 }
+::placeholder {
+	color: rgb(0, 0, 0);
+  }
+  
