@@ -46,12 +46,12 @@
       <div class="text-input">
         <label for="city"></label>
         
-        <input type="text" class="inputReg" name="cityTo" required placeholder="Москва"/>
+        <input type="text" class="inputReg" name="city-from" required placeholder="Москва"/>
       </div>
       <p>Куда</p>
       <div class="text-input">
         <label for="city"></label>
-        <input type="text" class="inputReg" name="city" required placeholder="Санкт-Петербург"/>
+        <input type="text" class="inputReg" name="city-to" required placeholder="Санкт-Петербург"/>
       </div>
       <p>Размер багажа</p>
       <div class="text-input">
@@ -74,7 +74,7 @@
     </form>
 
     <output id="result" class="hidden flex center flex-dir-col">
-      <ul id="output"></ul>
+      <ul id="output" class="nowrap"></ul>
       <form id="manageInterface">
         <input type="text" name="element">
         <div class="flex jc-se">

@@ -197,49 +197,7 @@ text-shadow:0 -1px 15px black,0 1px 0 #1a1401,0 2px 0 #050400,0 0 0 #0e0b00,0 1p
   #button-2:hover a {
     color: #2D3142;
   }
-  /* button animation */
- 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  /* ::-webkit-input-placeholder {
-  text-align: center;
-  }
-  
-  :-moz-placeholder {
-  /* Firefox 18- */
-  /* text-align: center;
-  }
-  
-/* ::-webkit-input-placeholder {
-  text-align: center;
+.nowrap {
+  white-space: nowrap;
 }
-
-:-moz-placeholder {
-  /* Firefox 18- */
-/*  text-align: center;
-}
-
-::-moz-placeholder {
-  /* Firefox 19+ */
-/*  text-align: center;
-}
-
-:-ms-input-placeholder {
-  text-align: center;
-} */
