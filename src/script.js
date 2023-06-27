@@ -57,7 +57,10 @@ personalizationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const formData = new FormData(e.target);
   const days = formData.get('days');
-  const city = formData.get('city');
+  const cityFrom = formData.get('city-from');
+  const cityTo = formData.get('city-to');
+  const bagSize = formData.get('bag-size');
+  const tripPurpose = formData.get('trip-purpose');
 
   await fetch('/save-personalization', {
     method: 'POST',
@@ -66,7 +69,10 @@ personalizationForm.addEventListener('submit', async (e) => {
     },
     body: JSON.stringify({
       days,
-      city,
+      cityFrom,
+      cityTo,
+      bagSize,
+      tripPurpose,
     }),
   }).then(async (response) => {
     if (response.ok) {
