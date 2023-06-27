@@ -6,10 +6,9 @@ lint:
 	npx eslint .
 
 fix-lint:
-	# npx prettier --write ./src/index.html
-	# npx prettier --write ./src/styles/styles.css
-	# npx prettier --write ./src/styles/mainPageStyles.css
-	# npx prettier --write ./src/styles/reset.css
+	npx prettier --write ./src/index.html
+	npx prettier --write ./src/styles/mainStyles.css
+	npx prettier --write ./src/styles/reset.css
 	npx eslint --fix .
 
 test:

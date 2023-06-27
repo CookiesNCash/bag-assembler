@@ -1,30 +1,36 @@
 class ClothingItem {
+  constructor(name) {
+    this.name = name;
+    this.quantity = 1;
+  }
+
   static addCoat() {
-    return ['Пальто', 1];
+    return new ClothingItem('Пальто');
   }
 
   static addSweater() {
-    return ['Свитер', 1];
+    return new ClothingItem('Свитер');
   }
 
   static addJacket() {
-    return ['Куртка', 1];
+    return new ClothingItem('Куртка');
   }
 
   static addShorts() {
-    return ['Шорты', 1];
+    return new ClothingItem('Шорты');
   }
 
   static addTShirt() {
-    return ['Футболка', 1];
+    return new ClothingItem('Футболка');
   }
 
   static addSweatshirt() {
-    return ['Кофта', 1];
+    return new ClothingItem('Кофта');
   }
 
   static addPants() {
-    return ['Штаны', 1];
+    return new ClothingItem('Штаны');
   }
 }
+
 export default ClothingItem;

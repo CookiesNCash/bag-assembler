@@ -16,14 +16,19 @@ const userFilePath = path.join(usersDirectory, 'user.json');
 const resultFilePath = path.join(usersDirectory, 'result.json');
 
 app.post('/save-personalization', async (req, res) => {
-  const { days, city } = req.body;
+  const {
+    days, cityFrom, cityTo, bagSize, purposeTrip,
+  } = req.body;
 
   try {
     const userData = await fs.readFile(userFilePath, 'utf-8');
     const userDataParsed = JSON.parse(userData);
 
     userDataParsed.days = days;
-    userDataParsed.city = city;
+    userDataParsed.cityFrom = cityFrom;
+    userDataParsed.cityTo = cityTo;
+    userDataParsed.bagSize = bagSize;
+    userDataParsed.purposeTrip = purposeTrip;
 
     await fs.writeFile(userFilePath, JSON.stringify(userDataParsed));
     console.log('Данные о персонализации успешно сохранены в user.json');

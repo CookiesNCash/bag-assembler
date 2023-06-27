@@ -60,7 +60,7 @@ personalizationForm.addEventListener('submit', async (e) => {
   const cityFrom = formData.get('city-from');
   const cityTo = formData.get('city-to');
   const bagSize = formData.get('bag-size');
-  const tripPurpose = formData.get('trip-purpose');
+  const purposeTrip = formData.get('trip-purpose');
 
   await fetch('/save-personalization', {
     method: 'POST',
@@ -72,7 +72,7 @@ personalizationForm.addEventListener('submit', async (e) => {
       cityFrom,
       cityTo,
       bagSize,
-      tripPurpose,
+      purposeTrip,
     }),
   }).then(async (response) => {
     if (response.ok) {
