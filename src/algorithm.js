@@ -30,7 +30,7 @@ const calculateLuggage = async (data) => {
     maxItemsAllowed = 3;
   } else if (currentBagSize === 'Чемодан') {
     maxItemsAllowed = 6;
-  } else if (currentBagSize === "Налегке" || currentPurposeTrip === "Домой") {
+  } else if (currentBagSize === 'Налегке' || currentPurposeTrip === 'Домой') {
     return [];
   }
 
@@ -40,15 +40,15 @@ const calculateLuggage = async (data) => {
   const limitedSweatshirts = Math.min(sweatShirtNeeded, maxItemsAllowed);
 
   // Добавление вещей в коллекцию
-  for (let i = 0; i < limitedTShirts; i++) {
+  for (let i = 0; i < limitedTShirts; i += 1) {
     collectedItems.push(ClothingItem.addTShirt());
   }
 
-  for (let i = 0; i < limitedPants; i++) {
+  for (let i = 0; i < limitedPants; i += 1) {
     collectedItems.push(ClothingItem.addPants());
   }
 
-  for (let i = 0; i < limitedSweatshirts; i++) {
+  for (let i = 0; i < limitedSweatshirts; i += 1) {
     collectedItems.push(ClothingItem.addSweatshirt());
   }
 
