@@ -14,27 +14,63 @@
 
 <body class="background flex flex-dir-col jc-sb ai-center">
   <header>
-    <h1>Сборщик багажа</h1>
+   
+<div class="logo-title flex">
+<a href="#">Сборщик<br>багажа</a>
+</div>
+</header>
   </header>
   <section class="flex center">
     <form class="flex flex-dir-col jc-se ai-center" id="nickname-form">
+      <p>Ваш никнейм</p>
       <div class="text-input">
         <label for="username"></label>
-        <input type="text" id="username" placeholder="Твой ник" name="nickname">
+        <input type="text" class="inputReg" id="username" placeholder="Тащер228" name="nickname">
       </div>
-      <input type="submit" value="Войти">
+      <div class="button" id="button-2">
+        <div id="slide"></div>
+        <a href="#">
+          <input  type="submit" value="Войти">
+        </a>
+      </div>
+    </div>
     </form>
 
     <form id="personalization-form" class="hidden flex flex-dir-col jc-se ai-center">
+      <p>Продолжительность поездки</p>
       <div class="text-input">
         <label for="days"></label>
-        <input type="number" id="days" name="days" required min="1" placeholder="Продолжительность поездки (количество дней)"/>
+        <input type="number" class="inputReg" name="days" required min="1" placeholder="14"/>
       </div>
+      <p>Откуда</p>
       <div class="text-input">
         <label for="city"></label>
-        <input type="text" id="cities" name="city" required placeholder="Город"/>
+        
+        <input type="text" class="inputReg" name="cityTo" required placeholder="Москва"/>
       </div>
-      <button type="submit" class="btn">Отправить</button>
+      <p>Куда</p>
+      <div class="text-input">
+        <label for="city"></label>
+        <input type="text" class="inputReg" name="city" required placeholder="Санкт-Петербург"/>
+      </div>
+      <p>Размер багажа</p>
+      <div class="text-input">
+        <label for="bag-size"></label>
+    
+        <input type="text" class="inputReg" name="bag-size" required placeholder="?"/>
+      </div>
+      <p>Цель поездки</p>
+      <div class="text-input"> 
+        <label for="trip-purpose"></label>
+       
+        <input type="text" class="inputReg" name="trip-purpose" required placeholder="Отдых">
+      </div>
+      <div class="button" id="button-2">
+        <div id="slide"></div>
+        <a href="#">
+         <button type="submit" class="btn">Отправить</button>
+        </a>
+      </div>
     </form>
 
     <output id="result" class="hidden flex center flex-dir-col">
