@@ -42,6 +42,7 @@
       <p>Откуда</p>
       <div class="text-input">
         <label for="city"></label>
+
         <input type="text" class="inputReg" name="city-from" required placeholder="Москва" />
       </div>
       <p>Куда</p>
@@ -52,7 +53,7 @@
       <p>Размер багажа</p>
       <div class="text-input flex center">
         <label for="bag-size"></label>
-        <select type="text" name="bag-size" required>
+        <select type="text" name="bag-size" class="text-align" required>
           <option value="Налегке">Налегке</option>
           <option value="Рюкзак">Рюкзак</option>
           <option value="Чемодан">Чемодан</option>
@@ -61,7 +62,7 @@
       <p>Цель поездки</p>
       <div class="text-input flex center">
         <label for="trip-purpose"></label>
-        <select type="text" name="trip-purpose" required>
+        <select type="text" name="trip-purpose" class="text-align" required>
           <option value="Отдых">Отдых</option>
           <option value="Домой">Домой</option>
           <option value="Командировака">Командировака</option>
@@ -75,7 +76,7 @@
       </div>
     </form>
 
-    <div id="result" class="hidden flex center flex-dir-col">
+    <output id="result" class="hidden flex center flex-dir-col">
       <ul id="output" class="nowrap"></ul>
       <form id="manageInterface">
         <input type="text" name="element" />
@@ -84,7 +85,7 @@
           <button id="remove">Удалить</button>
         </div>
       </form>
-    </div>
+    </output>
   </section>
   <footer></footer>
 </body>
