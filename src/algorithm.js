@@ -9,12 +9,7 @@ const calculateLuggage = async (data) => {
   const currentIsRain = await dataProcessor.IsRain();
   // const currentTripPurpose = dataProcessor.getTripPurpose();
 
-  const collectedItems = [
-    ClothingItem.addPassport(),
-    ClothingItem.addPhoneCharger(),
-    ClothingItem.addToothBrush(),
-    ClothingItem.addToothPaste(),
-  ];
+  const collectedItems = [];
 
   // Определение необходимой одежды в зависимости от температуры
   if (currentTemperatureTo < 10) {
@@ -25,8 +20,17 @@ const calculateLuggage = async (data) => {
     collectedItems.push(ClothingItem.addShorts());
   }
 
-  if (currentIsRain === true) {
+  if (currentIsRain) {
     collectedItems.push(ClothingItem.addUmbrella());
+  }
+
+  if (currentBagSize !== 'Налегке') {
+    collectedItems.push(
+      ClothingItem.addPassport(),
+      ClothingItem.addPhoneCharger(),
+      ClothingItem.addToothBrush(),
+      ClothingItem.addToothPaste()
+    );
   }
 
   // Определение количества вещей в зависимости от продолжительности поездки
