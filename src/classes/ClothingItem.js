@@ -41,7 +41,7 @@ class ClothingItem {
   }
 
   static addToothPaste() {
-    return new ClothingItem('Зубная паста')
+    return new ClothingItem('Зубная паста');
   }
 
   static addPhoneCharger() {
