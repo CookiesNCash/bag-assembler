@@ -44,7 +44,7 @@ const calculateLuggage = async (data) => {
     Чемодан: 6,
     Налегке: 1,
   };
-  const maxItemsAllowed = bagSizes[currentBagSize] || 0;
+  const maxItemsAllowed = bagSizes[currentBagSize];
 
   // Ограничение количества вещей по размеру багажа
   const limitedTShirts = Math.min(tShirtsNeeded, maxItemsAllowed);
