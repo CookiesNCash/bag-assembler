@@ -86,7 +86,9 @@ input[type="checkbox"] {
   height: 12%;
   border-radius: 10px;
 }
-
+option{ 
+  font-weight: bold;
+}
 .block {
   display: block;
 }
@@ -175,7 +177,7 @@ input[type="checkbox"] {
   border: 2px solid #00000085;
   border-radius: 10px;
   margin: 20px 20px 20px 20px;
-  color: #6ba0a0;
+  color: #000000;
   text-transform: uppercase;
   text-decoration: none;
   font-size: 0.8em;
@@ -231,4 +233,7 @@ a {
 }
 ::placeholder {
   font-weight: 100;
+}
+.btn {
+  font-weight: bold;
 }
