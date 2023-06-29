@@ -12,7 +12,9 @@ const calculateLuggage = async (data) => {
   const addBaseItems = () => {
     collectedItems.push(ClothingItem.addPassport());
     collectedItems.push(ClothingItem.addPhoneCharger());
-    collectedItems.push(ClothingItem.addToothbrushAndPaste());
+    collectedItems.push(ClothingItem.addToothBrush());
+    collectedItems.push(ClothingItem.addToothPaste());
+    collectedItems.push(ClothingItem.addDesodorant());
   };
   addBaseItems();
   // Определение необходимой одежды в зависимости от температуры

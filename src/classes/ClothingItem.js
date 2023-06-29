@@ -36,12 +36,20 @@ class ClothingItem {
     return new ClothingItem('Паспорт');
   }
 
-  static addToothbrushAndPaste() {
-    return new ClothingItem('Зубная паста и щетка');
+  static addToothBrush() {
+    return new ClothingItem('Зубная щётка');
+  }
+
+  static addToothPaste() {
+    return new ClothingItem('Зубная паста')
   }
 
   static addPhoneCharger() {
     return new ClothingItem('Зарядка для телефона');
+  }
+
+  static addDesodorant() {
+    return new ClothingItem('Дезодорант');
   }
 }
 
