@@ -235,16 +235,24 @@ a {
 .nowrap {
   white-space: nowrap;
 }
+<<<<<<< HEAD
 select {
   text-align-last: center;
   font-weight: bold;
 }
 .text-align {
+=======
+
+.text-align-c {
+>>>>>>> d971ac9789d67e9161df85eda8263bb3205a3505
   text-align: center;
 }
 ::placeholder {
   font-weight: 100;
 }
+<<<<<<< HEAD
 .btn {
   font-weight: bold;
 }
+=======
+>>>>>>> d971ac9789d67e9161df85eda8263bb3205a3505

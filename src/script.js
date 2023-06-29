@@ -20,7 +20,7 @@ const state = {
 
 const renderBag = (bag, ul) => {
   ul.innerHTML = ''; //eslint-disable-line
-  bag.forEach(([el, isChecked]) => {
+  bag.forEach(([el, quantity, isChecked]) => {
     const li = document.createElement('li');
     const input = document.createElement('input');
     input.type = 'checkbox';
@@ -29,14 +29,40 @@ const renderBag = (bag, ul) => {
     span.textContent = el;
     li.append(input);
     li.append(span);
+    li.append(` - ${quantity}`);
+    const minusButton = document.createElement('button');
+    minusButton.textContent = '-';
+    const plusButton = document.createElement('button');
+    plusButton.textContent = '+';
+    li.append(' ');
+    li.append(minusButton);
+    li.append(plusButton);
     li.id = el;
     ul.append(li);
+
+    minusButton.addEventListener('click', (e) => {
+      const { id } = e.target.parentNode;
+      state.bag.forEach((bagEl) => {
+        const [, num] = bagEl;
+        if (bagEl[0] === id) bagEl[1] = num - 1; //eslint-disable-line
+      });
+      renderBag(state.bag, outputUl);
+    });
+
+    plusButton.addEventListener('click', (e) => {
+      const { id } = e.target.parentNode;
+      state.bag.forEach((bagEl) => {
+        const [, num] = bagEl;
+        if (bagEl[0] === id) bagEl[1] = num + 1; //eslint-disable-line
+      });
+      renderBag(state.bag, outputUl);
+    });
 
     input.addEventListener('change', (e) => {
       const checkedBool = e.target.checked;
       const { id } = e.target.parentNode;
       state.bag.forEach((bagEl) => {
-        if (bagEl[0] === id) bagEl[1] = checkedBool; //eslint-disable-line
+        if (bagEl[0] === id) bagEl[2] = checkedBool; //eslint-disable-line
       });
     });
   });
@@ -81,7 +107,7 @@ personalizationForm.addEventListener('submit', async (e) => {
 
       const { result } = resultData;
 
-      state.bag = result.map((el) => [el, false]);
+      state.bag = result.map(([el, quantity]) => [el, quantity, false]);
       renderBag(state.bag, outputUl);
     } else {
       throw new Error('Ошибка при сохранении данных о персонализации');
@@ -100,7 +126,7 @@ personalizationForm.addEventListener('submit', async (e) => {
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
-  const newBag = [...state.bag, [value, false]];
+  const newBag = [...state.bag, [value, 1, false]];
   state.bag = newBag;
   renderBag(state.bag, outputUl);
   interfaceForm.reset();
