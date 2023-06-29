@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-{"days":"14","cityFrom":"Москва","cityTo":"Санкт-Петербург","bagSize":"Налегке","tripPurpose":"Отдых"}
-=======
-<<<<<<< HEAD
-{"days":"14","cityFrom":"Санкт-Петербург","cityTo":"Владивосток","bagSize":"Налегке","tripPurpose":"Домой","purposeTrip":"Домой"}
-=======
-{"days":"14","cityFrom":"Москва","cityTo":"Санкт-Петербург","bagSize":"Рюкзак","tripPurpose":"Домой"}
->>>>>>> a78674e25d3d9a03f48b891e02e5e14527efe25b
->>>>>>> 97491edf0ff2eaaa0f0140f6713722712585e255
+{"days":"14","cityFrom":"Москва","cityTo":"Санкт-Петербург","bagSize":"Налегке","tripPurpose":"Отдых"}  
