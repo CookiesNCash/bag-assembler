@@ -34,9 +34,9 @@ const calculateLuggage = async (data) => {
   }
 
   // Определение количества вещей в зависимости от продолжительности поездки
-  const tShirtsNeeded = Math.floor(currentDays / 3);
-  const pantsNeeded = Math.floor(currentDays / 5);
-  const sweatShirtNeeded = Math.floor(currentDays / 5);
+  const tShirtsNeeded = Math.ceil(currentDays / 3);
+  const pantsNeeded = Math.ceil(currentDays / 5);
+  const sweatShirtNeeded = Math.ceil(currentDays / 5);
 
   // Учет размера багажа
   const bagSizes = {
