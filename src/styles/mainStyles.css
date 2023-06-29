@@ -229,6 +229,6 @@ a {
 .text-align {
   text-align: center;
 }
-:placeholder {
+::placeholder {
   font-weight: 100;
  }
