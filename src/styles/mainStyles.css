@@ -226,9 +226,15 @@ a {
   white-space: nowrap;
 }
 
-.text-align {
+.text-align-c {
   text-align: center;
 }
 ::placeholder {
   font-weight: 100;
+}
+
+/* block */
+
+.w100p {
+  width: 100%;
 }
