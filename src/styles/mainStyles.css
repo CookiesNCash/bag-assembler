@@ -70,8 +70,6 @@ input {
 }
 
 input[type="submit"] {
-  width: auto;
-  height: auto;
 }
 
 input[type="checkbox"] {
@@ -86,7 +84,7 @@ input[type="checkbox"] {
   height: 12%;
   border-radius: 10px;
 }
-option{ 
+option {
   font-weight: bold;
 }
 .block {
@@ -169,7 +167,13 @@ option{
   height: 12%;
   border-radius: 10px;
 }
-
+.w100p {
+  width: 100%;
+}
+.button-size {
+  width: 200px;
+  height: 200px;
+}
 .button {
   display: inline-flex;
   height: 10%;
@@ -222,12 +226,19 @@ a {
   color: #2d3142;
 }
 
+.inputSumbit {
+  width: 400;
+  height: 400;
+}
 /* text */
 
 .nowrap {
   white-space: nowrap;
 }
-
+select {
+  text-align-last: center;
+  font-weight: bold;
+}
 .text-align {
   text-align: center;
 }

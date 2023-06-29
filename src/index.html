@@ -34,7 +34,7 @@
         <div class="button" id="button-2">
           <div id="slide"></div>
           <a href="#">
-            <input type="submit" value="Войти" />
+            <button class="button-size" type="submit">Войти</button>
           </a>
         </div>
       </form>
@@ -57,7 +57,7 @@
           />
         </div>
         <p>Откуда</p>
-        <div class="text-input">
+        <div class="text-input inputReg">
           <label for="city"></label>
           <input
             type="text"
@@ -79,27 +79,27 @@
           />
         </div>
         <p>Размер багажа</p>
-        <div class="text-input flex center">
-          <label for="bag-size"></label>
-          <select type="text" name="bag-size" required>
-            <option value="Налегке">Налегке</option>
-            <option value="Рюкзак">Рюкзак</option>
-            <option value="Чемодан">Чемодан</option>
-          </select>
-        </div>
+
+        <label for="bag-size"></label>
+        <select class="text-input" type="text" name="bag-size" required>
+          <option value="Налегке">Налегке</option>
+          <option value="Рюкзак">Рюкзак</option>
+          <option value="Чемодан">Чемодан</option>
+        </select>
+
         <p>Цель поездки</p>
-        <div class="text-input flex center">
-          <label for="trip-purpose"></label>
-          <select type="text" name="trip-purpose" required>
-            <option value="Отдых">Отдых</option>
-            <option value="Домой">Домой</option>
-            <option value="Командировака">Командировака</option>
-          </select>
-        </div>
+
+        <label for="trip-purpose"></label>
+        <select class="text-input" type="text" name="trip-purpose" required>
+          <option value="Отдых">Отдых</option>
+          <option value="Домой">Домой</option>
+          <option value="Командировака">Командировака</option>
+        </select>
+
         <div class="button" id="button-2">
           <div id="slide"></div>
           <a href="#">
-            <button type="submit" class="btn">Отправить</button>
+            <button class="button-size" type="submit">Отправить</button>
           </a>
         </div>
       </form>
