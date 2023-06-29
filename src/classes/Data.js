@@ -23,9 +23,9 @@ class Data {
     return bagSize;
   }
 
-  getPurposeTrip() {
-    const { purposeTrip } = this.data;
-    return purposeTrip;
+  getTripPurpose() {
+    const { tripPurpose } = this.data;
+    return tripPurpose;
   }
 }
 

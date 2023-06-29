@@ -6,10 +6,15 @@ const calculateLuggage = async (data) => {
   const currentTemperature = await dataProcessor.getTemperatureCityTo();
   const currentDays = dataProcessor.getDays();
   const currentBagSize = dataProcessor.getBagSize();
-  const currentPurposeTrip = dataProcessor.getPurposeTrip();
+  // const currentTripPurpose = dataProcessor.getTripPurpose();
 
   const collectedItems = [];
-
+  const addBaseItems = () => {
+    collectedItems.push(ClothingItem.addPassport());
+    collectedItems.push(ClothingItem.addPhoneCharger());
+    collectedItems.push(ClothingItem.addToothbrushAndPaste());
+  };
+  addBaseItems();
   // Определение необходимой одежды в зависимости от температуры
   if (currentTemperature < 10) {
     collectedItems.push(ClothingItem.addCoat(), ClothingItem.addSweater());
@@ -30,7 +35,7 @@ const calculateLuggage = async (data) => {
     maxItemsAllowed = 3;
   } else if (currentBagSize === 'Чемодан') {
     maxItemsAllowed = 6;
-  } else if (currentBagSize === 'Налегке' || currentPurposeTrip === 'Домой') {
+  } else if (currentBagSize === 'Налегке') {
     return [];
   }
 
