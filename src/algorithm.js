@@ -29,7 +29,7 @@ const calculateLuggage = async (data) => {
       ClothingItem.addPassport(),
       ClothingItem.addPhoneCharger(),
       ClothingItem.addToothBrush(),
-      ClothingItem.addToothPaste()
+      ClothingItem.addToothPaste(),
     );
   }
 
