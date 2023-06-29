@@ -66,6 +66,7 @@ form {
 input {
   width: 100%;
   height: 100%;
+  font-weight: bold;
 }
 
 input[type="submit"] {
@@ -219,6 +220,15 @@ a {
   color: #2d3142;
 }
 
+/* text */
+
 .nowrap {
   white-space: nowrap;
 }
+
+.text-align {
+  text-align: center;
+}
+:placeholder {
+  font-weight: 100;
+ }
