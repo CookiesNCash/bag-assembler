@@ -51,6 +51,10 @@ class ClothingItem {
   static addDesodorant() {
     return new ClothingItem('Дезодорант');
   }
+
+  static addUmbrella() {
+    return new ClothingItem('Зонтик');
+  }
 }
 
 export default ClothingItem;

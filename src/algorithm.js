@@ -3,27 +3,30 @@ import ClothingItem from './classes/ClothingItem.js';
 
 const calculateLuggage = async (data) => {
   const dataProcessor = new Data(data);
-  const currentTemperature = await dataProcessor.getTemperatureCityTo();
+  const currentTemperatureTo = await dataProcessor.getTemperatureCityTo();
   const currentDays = dataProcessor.getDays();
   const currentBagSize = dataProcessor.getBagSize();
+  const currentIsRain = await dataProcessor.IsRain();
   // const currentTripPurpose = dataProcessor.getTripPurpose();
 
-  const collectedItems = [];
-  const addBaseItems = () => {
-    collectedItems.push(ClothingItem.addPassport());
-    collectedItems.push(ClothingItem.addPhoneCharger());
-    collectedItems.push(ClothingItem.addToothBrush());
-    collectedItems.push(ClothingItem.addToothPaste());
-    collectedItems.push(ClothingItem.addDesodorant());
-  };
-  addBaseItems();
+  const collectedItems = [
+    ClothingItem.addPassport(),
+    ClothingItem.addPhoneCharger(),
+    ClothingItem.addToothBrush(),
+    ClothingItem.addToothPaste(),
+  ];
+
   // Определение необходимой одежды в зависимости от температуры
-  if (currentTemperature < 10) {
+  if (currentTemperatureTo < 10) {
     collectedItems.push(ClothingItem.addCoat(), ClothingItem.addSweater());
-  } else if (currentTemperature < 20) {
+  } else if (currentTemperatureTo < 20) {
     collectedItems.push(ClothingItem.addJacket());
   } else {
     collectedItems.push(ClothingItem.addShorts());
+  }
+
+  if (currentIsRain === true) {
+    collectedItems.push(ClothingItem.addUmbrella());
   }
 
   // Определение количества вещей в зависимости от продолжительности поездки
@@ -32,14 +35,12 @@ const calculateLuggage = async (data) => {
   const sweatShirtNeeded = Math.floor(currentDays / 5);
 
   // Учет размера багажа
-  let maxItemsAllowed;
-  if (currentBagSize === 'Рюкзак') {
-    maxItemsAllowed = 3;
-  } else if (currentBagSize === 'Чемодан') {
-    maxItemsAllowed = 6;
-  } else if (currentBagSize === 'Налегке') {
-    return [];
-  }
+  const bagSizes = {
+    Рюкзак: 3,
+    Чемодан: 6,
+    Налегке: 1,
+  };
+  const maxItemsAllowed = bagSizes[currentBagSize] || 0;
 
   // Ограничение количества вещей по размеру багажа
   const limitedTShirts = Math.min(tShirtsNeeded, maxItemsAllowed);
