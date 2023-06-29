@@ -31,6 +31,26 @@ class ClothingItem {
   static addPants() {
     return new ClothingItem('Штаны');
   }
+
+  static addPassport() {
+    return new ClothingItem('Паспорт');
+  }
+
+  static addToothBrush() {
+    return new ClothingItem('Зубная щётка');
+  }
+
+  static addToothPaste() {
+    return new ClothingItem('Зубная паста');
+  }
+
+  static addPhoneCharger() {
+    return new ClothingItem('Зарядка для телефона');
+  }
+
+  static addDesodorant() {
+    return new ClothingItem('Дезодорант');
+  }
 }
 
 export default ClothingItem;
