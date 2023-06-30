@@ -3,21 +3,18 @@ import ClothingItem from './classes/ClothingItem.js';
 
 const calculateLuggage = async (data) => {
   const dataProcessor = new Data(data);
-  const currentTemperatureTo = await dataProcessor.getTemperatureCityTo();
+  const currentTemperature = await dataProcessor.getTemperatureCityTo();
   const currentDays = dataProcessor.getDays();
   const currentBagSize = dataProcessor.getBagSize();
   const currentIsRain = await dataProcessor.IsRain();
-  // const currentTripPurpose = dataProcessor.getTripPurpose();
 
   const collectedItems = [];
 
   // Определение необходимой одежды в зависимости от температуры
-  if (currentTemperatureTo < 10) {
+  if (currentTemperature < 10) {
     collectedItems.push(ClothingItem.addCoat(), ClothingItem.addSweater());
-  } else if (currentTemperatureTo < 20) {
+  } else if (currentTemperature < 20) {
     collectedItems.push(ClothingItem.addJacket());
-  } else {
-    collectedItems.push(ClothingItem.addShorts());
   }
 
   if (currentIsRain) {
@@ -29,39 +26,42 @@ const calculateLuggage = async (data) => {
       ClothingItem.addPassport(),
       ClothingItem.addPhoneCharger(),
       ClothingItem.addToothBrush(),
-      ClothingItem.addToothPaste(),
+      ClothingItem.addToothPaste()
     );
   }
 
   // Определение количества вещей в зависимости от продолжительности поездки
   const tShirtsNeeded = Math.ceil(currentDays / 3);
-  const pantsNeeded = Math.ceil(currentDays / 5);
-  const sweatShirtNeeded = Math.ceil(currentDays / 5);
+  const sweatShirtPantsNeeded = Math.ceil(currentDays / 5);
+  const shortsNeeded = Math.ceil(currentDays / 5);
 
   // Учет размера багажа
   const bagSizes = {
     Рюкзак: 3,
     Чемодан: 6,
-    Налегке: 1,
+    Налегке: 1
   };
   const maxItemsAllowed = bagSizes[currentBagSize];
 
   // Ограничение количества вещей по размеру багажа
   const limitedTShirts = Math.min(tShirtsNeeded, maxItemsAllowed);
-  const limitedPants = Math.min(pantsNeeded, maxItemsAllowed);
-  const limitedSweatshirts = Math.min(sweatShirtNeeded, maxItemsAllowed);
+  const limitedSweatshirtsPants = Math.min(sweatShirtPantsNeeded, maxItemsAllowed);
+  const limitedShorts = Math.min(shortsNeeded, maxItemsAllowed);
 
   // Добавление вещей в коллекцию
   for (let i = 0; i < limitedTShirts; i += 1) {
     collectedItems.push(ClothingItem.addTShirt());
   }
 
-  for (let i = 0; i < limitedPants; i += 1) {
-    collectedItems.push(ClothingItem.addPants());
-  }
-
-  for (let i = 0; i < limitedSweatshirts; i += 1) {
-    collectedItems.push(ClothingItem.addSweatshirt());
+  if (currentTemperature < 20) {
+    for (let i = 0; i < limitedSweatshirtsPants; i += 1) {
+      collectedItems.push(ClothingItem.addPants());
+      collectedItems.push(ClothingItem.addSweatshirt());
+    }
+  } else {
+    for (let i = 0; i < limitedShorts; i += 1) {
+      collectedItems.push(ClothingItem.addShorts());
+    }
   }
 
   // Сборка багажа и подсчет количества для каждого предмета
