@@ -42,22 +42,18 @@ const renderBag = (bag, ul) => {
     li.id = el;
     ul.append(li);
 
-    minusButton.addEventListener('click', (e) => {
-      const { id } = e.target.parentNode;
-      state.bag.forEach((bagEl) => {
-        const [, num] = bagEl;
-        if (bagEl[0] === id) bagEl[1] = num - 1; //eslint-disable-line
+    [minusButton, plusButton].forEach((b) => {
+      const { textContent: sign } = b;
+      b.addEventListener('click', (e) => {
+        const { id } = e.target.parentNode;
+        state.bag.forEach((bagEl) => {
+          const [, num] = bagEl;
+          if (bagEl[0] === id) {
+            bagEl[1] = sign === '-' ? num - 1 : num + 1; //eslint-disable-line
+          }
+        });
+        renderBag(state.bag, outputUl);
       });
-      renderBag(state.bag, outputUl);
-    });
-
-    plusButton.addEventListener('click', (e) => {
-      const { id } = e.target.parentNode;
-      state.bag.forEach((bagEl) => {
-        const [, num] = bagEl;
-        if (bagEl[0] === id) bagEl[1] = num + 1; //eslint-disable-line
-      });
-      renderBag(state.bag, outputUl);
     });
 
     input.addEventListener('change', (e) => {
