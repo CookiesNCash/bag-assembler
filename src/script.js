@@ -126,6 +126,10 @@ personalizationForm.addEventListener('submit', async (e) => {
 addButton.addEventListener('click', (e) => {
   e.preventDefault();
   const { value } = elInput;
+  if (value === '') {
+    elInput.focus();
+    return;
+  }
   const newBag = [...state.bag, [value, 1, false]];
   state.bag = newBag;
   renderBag(state.bag, outputUl);
