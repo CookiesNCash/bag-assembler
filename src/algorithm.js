@@ -26,7 +26,7 @@ const calculateLuggage = async (data) => {
       ClothingItem.addPassport(),
       ClothingItem.addPhoneCharger(),
       ClothingItem.addToothBrush(),
-      ClothingItem.addToothPaste()
+      ClothingItem.addToothPaste(),
     );
   }
 
@@ -39,7 +39,7 @@ const calculateLuggage = async (data) => {
   const bagSizes = {
     Рюкзак: 3,
     Чемодан: 6,
-    Налегке: 1
+    Налегке: 1,
   };
   const maxItemsAllowed = bagSizes[currentBagSize];
 
