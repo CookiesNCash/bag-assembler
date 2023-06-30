@@ -32,8 +32,10 @@ const renderBag = (bag, ul) => {
     li.append(` - ${quantity}`);
     const minusButton = document.createElement('button');
     minusButton.textContent = '-';
+    minusButton.classList.add('minusButton');
     const plusButton = document.createElement('button');
     plusButton.textContent = '+';
+    plusButton.classList.add('plusButton');
     li.append(' ');
     li.append(minusButton);
     li.append(plusButton);
