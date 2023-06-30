@@ -18,7 +18,7 @@ class Data {
     return temperature;
   }
 
-  async IsRain() {
+  async isRain() {
     const { cityFrom } = this.data;
     const { cityTo } = this.data;
     const apiUrlFrom = `http://api.weatherapi.com/v1/current.json?key=6cf406ee732b442baa172614230806&lang=ru&q=${cityFrom}`;

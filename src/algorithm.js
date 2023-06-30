@@ -6,7 +6,7 @@ const calculateLuggage = async (data) => {
   const currentTemperature = await dataProcessor.getTemperatureCityTo();
   const currentDays = dataProcessor.getDays();
   const currentBagSize = dataProcessor.getBagSize();
-  const currentIsRain = await dataProcessor.IsRain();
+  const currentIsRain = await dataProcessor.isRain();
 
   const collectedItems = [];
 
