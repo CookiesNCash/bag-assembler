@@ -238,6 +238,9 @@ a {
 #remove{
   font-weight: bold;
 }
+#bold{
+  font-weight: bold;
+}
 /* text */
 
 .nowrap {
