@@ -232,6 +232,12 @@ a {
   width: 400;
   height: 400;
 }
+#add {
+  font-weight: bold;
+}
+#remove{
+  font-weight: bold;
+}
 /* text */
 
 .nowrap {
